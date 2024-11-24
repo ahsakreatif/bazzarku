@@ -14,7 +14,7 @@ return new class extends Migration
 	public function up()
 	{
 		Schema::create('user_vendors', function(Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('vendor_name');
             $table->string('phone_number');
             $table->text('description')->nullable();
@@ -23,8 +23,11 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
 		});
+
+        Schema::table('user_vendors', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
 	}
 
 	/**

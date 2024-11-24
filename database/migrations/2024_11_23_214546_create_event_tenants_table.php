@@ -14,16 +14,18 @@ return new class extends Migration
 	public function up()
 	{
 		Schema::create('event_tenants', function(Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('events');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->string('status')->default('pending');
             $table->string('message')->nullable();
-
             $table->timestamps();
 		});
+
+        Schema::table("event_tenants", function(Blueprint $table) {
+            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
 	}
 
 	/**

@@ -14,15 +14,18 @@ return new class extends Migration
 	public function up()
 	{
 		Schema::create('event_reviews', function(Blueprint $table) {
-            $table->increments('id');
-            $table->integer('event_id')->unsigned();
-            $table->foreign('event_id')->references('id')->on('events');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->id();
+            $table->unsignedBigInteger('event_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
             $table->text('review');
             $table->integer('rating');
             $table->timestamps();
 		});
+
+        Schema::table("event_reviews", function(Blueprint $table) {
+            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
 	}
 
 	/**

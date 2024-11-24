@@ -14,7 +14,7 @@ return new class extends Migration
 	public function up()
 	{
 		Schema::create('events', function(Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('description')->nullable();
@@ -22,12 +22,17 @@ return new class extends Migration
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->float('price')->default(0);
-            $table->integer('event_type_id')->unsigned();
-            $table->foreign('event_type_id')->references('id')->on('event_types');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('event_type_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 		});
+
+        Schema::table('events', function(Blueprint $table) {
+            $table->foreign('event_type_id')->references('id')->on('event_types');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->index('start_date');
+            $table->index('end_date');
+        });
 	}
 
 	/**

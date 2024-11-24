@@ -14,7 +14,7 @@ return new class extends Migration
 	public function up()
 	{
 		Schema::create('user_tenants', function(Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('tenant_name');
             $table->string('phone_number');
             $table->string('address')->nullable();
@@ -24,8 +24,10 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
 		});
+        Schema::table('user_tenants', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
 	}
 
 	/**
