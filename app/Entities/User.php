@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Entities;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use SolutionForest\FilamentAccessManagement\Concerns\FilamentUserHelpers;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, FilamentUserHelpers;
 
     /**
      * The attributes that are mass assignable.
@@ -44,5 +45,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function tenant()
+    {
+        return $this->hasOne(UserTenant::class);
+    }
+
+    public function vendor()
+    {
+        return $this->hasOne(UserVendor::class);
+    }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'event_tenants', 'user_id', 'event_id');
     }
 }
