@@ -30,4 +30,8 @@ class UserTenant extends Model implements Transformable
         'user_id'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

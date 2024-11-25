@@ -17,11 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('picture')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->float('price')->default(0);
+            $table->string('status')->default('draft');
             $table->unsignedBigInteger('event_type_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

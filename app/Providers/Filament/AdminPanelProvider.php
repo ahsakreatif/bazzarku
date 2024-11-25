@@ -58,9 +58,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                FilamentShieldPlugin::make(),
                 FilamentAccessManagementPanel::make(),
-                FilamentUsersPlugin::make(),
             ]);
     }
 }

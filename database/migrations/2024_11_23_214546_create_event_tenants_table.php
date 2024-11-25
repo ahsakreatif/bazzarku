@@ -16,15 +16,18 @@ return new class extends Migration
 		Schema::create('event_tenants', function(Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('event_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('tenant_id');
             $table->string('status')->default('pending');
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
+            $table->string('payment_proof')->nullable();
             $table->string('message')->nullable();
             $table->timestamps();
 		});
 
         Schema::table("event_tenants", function(Blueprint $table) {
             $table->foreign('event_id')->references('id')->on('events');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('tenant_id')->references('id')->on('user_tenants');
         });
 	}
 

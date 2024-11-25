@@ -32,7 +32,7 @@ return [
             /**
              * Using db based filament navigation if true.
              */
-            'enabled' => false,
+            'enabled' => true,
             /**
              * Table name db based filament navigation.
              */
@@ -69,6 +69,8 @@ return [
                 'roles.*',
                 'permissions.*',
                 'menu.*',
+                'events.*',
+                'event_types.*',
             ],
         ],
     ],

@@ -48,11 +48,6 @@ class Event extends Model implements Transformable
         return $this->hasMany(EventReview::class);
     }
 
-    public function getPictureAttribute($value)
-    {
-        return $value ? asset('storage/' . $value) : null;
-    }
-
     public function getStartDateAttribute($value)
     {
         return $value ? date('Y-m-d\TH:i', strtotime($value)) : null;
@@ -64,7 +59,7 @@ class Event extends Model implements Transformable
     }
 
     public function tenants() {
-        return $this->belongsToMany(User::class, 'event_tenants', 'event_id', 'user_id');
+        return $this->belongsToMany(User::class, 'event_tenants', 'event_id', 'tenant_id');
     }
 
 }
