@@ -14,9 +14,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 
-class TenantsRelationManager extends RelationManager
+class EventTenantsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'tenants';
+    protected static string $relationship = 'eventTenants';
     protected static ?string $label = 'Tenants';
 
     public function form(Form $form): Form
@@ -25,7 +25,7 @@ class TenantsRelationManager extends RelationManager
             ->schema([
                 Select::make('tenant_id')
                     ->label('Tenant')
-                    ->relationship('tenant', 'tenant_name')
+                    ->options(fn () => \App\Entities\UserTenant::pluck('tenant_name', 'id'))
                     ->searchable()
                     ->required(),
                 Select::make('status')
@@ -55,7 +55,7 @@ class TenantsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('tenant.name')
+                Tables\Columns\TextColumn::make('tenant.tenant_name')
                     ->label('Tenant')
                     ->searchable()
                     ->sortable(),

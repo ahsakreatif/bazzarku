@@ -10,6 +10,8 @@ use SolutionForest\FilamentAccessManagement\Concerns\FilamentUserHelpers;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Panel;
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Permission\Models\Role;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -69,4 +71,10 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->belongsToMany(Event::class, 'event_tenants', 'user_id', 'event_id');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(EventReview::class);
+    }
+
 }

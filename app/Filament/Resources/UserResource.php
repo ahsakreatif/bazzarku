@@ -15,9 +15,13 @@ use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Get;
 use App\Constants\Role as RoleConstant;
+use App\Entities\User;
+use Filament\Forms\Components\Hidden;
 
 class UserResource extends Resource
 {
+    protected static ?string $model = User::class;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -52,14 +56,10 @@ class UserResource extends Resource
                                 TextInput::make('city'),
                                 Forms\Components\FileUpload::make('picture')
                                     ->image()
-                                    ->avatar()
-                                    ->label(strval(__('filament-access-management::filament-access-management.field.user.picture')),
-                                    ),
+                                    ->avatar(),
                                 Forms\Components\Textarea::make('profile')
-                                    ->rows(3)
-                                    ->label(strval(__('filament-access-management::filament-access-management.field.user.profile')),
-                                    ),
-                            ])->hidden(fn (Get $get): bool => $get('roles') != RoleConstant::TENANT),
+                                    ->rows(3),
+                            ])->hidden(fn (User $record): bool => !in_array(RoleConstant::TENANT, $record->roles->pluck('id')->toArray())),
                         Fieldset::make('User Vendor')->relationship('vendor')
                             ->schema([
                                 TextInput::make('vendor_name'),
@@ -68,14 +68,10 @@ class UserResource extends Resource
                                 TextInput::make('city'),
                                 Forms\Components\FileUpload::make('picture')
                                     ->image()
-                                    ->avatar()
-                                    ->label(strval(__('filament-access-management::filament-access-management.field.user.picture')),
-                                    ),
+                                    ->avatar(),
                                 Forms\Components\Textarea::make('description')
-                                    ->rows(3)
-                                    ->label(strval(__('filament-access-management::filament-access-management.field.user.profile')),
-                                    ),
-                            ])->hidden(fn (Get $get): bool => $get('roles') != RoleConstant::VENDOR),
+                                    ->rows(3),
+                            ])->hidden(fn (User $record): bool => !in_array(RoleConstant::VENDOR, $record->roles->pluck('id')->toArray())),
                         // Forms\Components\Select::make('roles')
                         //     ->multiple()
                         //     ->relationship('roles', 'name')

@@ -3,7 +3,7 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -31,8 +31,13 @@ class EventTenant extends Model implements Transformable
         'message'
     ];
 
-    public function event(): BelongsToMany
+    public function event(): BelongsTo
     {
-        return $this->belongsToMany(Event::class, 'event_tenants', 'event_id', 'tenant_id');
+        return $this->belongsTo(Event::class, 'event_id', 'id');
+    }
+
+    public function tenant(): BelongsTo
+    {
+        return $this->belongsTo(UserTenant::class, 'tenant_id', 'id');
     }
 }

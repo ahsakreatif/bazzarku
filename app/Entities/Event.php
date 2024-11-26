@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -58,8 +59,9 @@ class Event extends Model implements Transformable
         return $value ? date('Y-m-d\TH:i', strtotime($value)) : null;
     }
 
-    public function tenants() {
-        return $this->belongsToMany(User::class, 'event_tenants', 'event_id', 'tenant_id');
+    public function eventTenants(): HasMany
+    {
+        return $this->hasMany(EventTenant::class);
     }
 
 }
