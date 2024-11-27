@@ -59,7 +59,7 @@ class UserResource extends Resource
                                     ->avatar(),
                                 Forms\Components\Textarea::make('profile')
                                     ->rows(3),
-                            ])->hidden(fn (User $record): bool => !in_array(RoleConstant::TENANT, $record->roles->pluck('id')->toArray())),
+                            ])->hidden(fn (?User $record): bool => $record != null && !in_array(RoleConstant::TENANT, $record->roles->pluck('id')->toArray())),
                         Fieldset::make('User Vendor')->relationship('vendor')
                             ->schema([
                                 TextInput::make('vendor_name'),
@@ -71,7 +71,7 @@ class UserResource extends Resource
                                     ->avatar(),
                                 Forms\Components\Textarea::make('description')
                                     ->rows(3),
-                            ])->hidden(fn (User $record): bool => !in_array(RoleConstant::VENDOR, $record->roles->pluck('id')->toArray())),
+                            ])->hidden(fn (?User $record): bool => $record != null && !in_array(RoleConstant::VENDOR, $record->roles->pluck('id')->toArray())),
                         // Forms\Components\Select::make('roles')
                         //     ->multiple()
                         //     ->relationship('roles', 'name')
