@@ -14,8 +14,16 @@ class RepositoryServiceProvider extends PrettusRepositoryServiceProvider
     {
         parent::register();
         $this->app->bind(
-          \App\Repositories\SiteConfigRepository::class,
-          \App\Repositories\SiteConfigRepositoryEloquent::class
+            \App\Repositories\SiteConfigRepository::class,
+            \App\Repositories\SiteConfigRepositoryEloquent::class,
+        );
+        $this->app->bind(
+            \App\Repositories\EventRepository::class,
+            \App\Repositories\EventRepositoryEloquent::class,
+        );
+        $this->app->bind(
+            \App\Repositories\EventTypeRepository::class,
+            \App\Repositories\EventTypeRepositoryEloquent::class,
         );
     }
 
@@ -24,6 +32,6 @@ class RepositoryServiceProvider extends PrettusRepositoryServiceProvider
      */
     public function boot(): void
     {
-        //
+        parent::boot();
     }
 }

@@ -34,4 +34,9 @@ class UserTenant extends Model implements Transformable
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getPictureAttribute($value)
+    {
+        return $value ? asset('storage/' . $value) : null;
+    }
 }

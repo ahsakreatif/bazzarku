@@ -9,7 +9,7 @@
                     <path d="M9 16.0185C9.268 16.2905 9.268 16.7275 9 16.9975C8.732 17.2675 8.299 17.2685 8.031 16.9975L0.201 9.0895C-0.067 8.8195 -0.067 8.3825 0.201 8.1105L8.031 0.2025C8.299 -0.0675 8.732 -0.0675 9 0.2025C9.268 0.4735 9.268 0.9115 9 1.1815L1.859 8.6005L9 16.0185Z" fill="#1F40FF"></path>
                   </svg>
                 </a>
-                <img class="object-cover w-full h-full" src="/yofte-assets/images/product-bottle.png" alt="">
+                <img class="object-cover w-full h-full" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/product-bottle.png" alt="">
                 <a class="absolute top-1/2 right-0 mr-8 transform translate-1/2" href="#">
                   <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.19922 1.1817C-0.0687795 0.909696 -0.0687794 0.472695 0.19922 0.202695C0.46722 -0.0673054 0.90022 -0.0683048 1.16822 0.202695L8.99822 8.11069C9.26622 8.3807 9.26622 8.81769 8.99822 9.08969L1.16822 16.9977C0.900219 17.2677 0.467218 17.2677 0.199219 16.9977C-0.0687809 16.7267 -0.0687808 16.2887 0.199219 16.0187L7.34022 8.5997L0.19922 1.1817Z" fill="#1F40FF"></path>
@@ -19,22 +19,22 @@
               <div class="flex flex-wrap -mx-2">
                 <div class="w-1/2 sm:w-1/4 p-2">
                   <a class="block border border-blue-300" href="#">
-                    <img class="w-full h-32 object-cover" src="/yofte-assets/images/product-bottle.png" alt="">
+                    <img class="w-full h-32 object-cover" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/product-bottle.png" alt="">
                   </a>
                 </div>
                 <div class="w-1/2 sm:w-1/4 p-2">
                   <a class="block border border-transparent hover:border-gray-400" href="#">
-                    <img class="w-full h-32 object-cover" src="/yofte-assets/images/product-bottle2.png" alt="">
+                    <img class="w-full h-32 object-cover" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/product-bottle2.png" alt="">
                   </a>
                 </div>
                 <div class="w-1/2 sm:w-1/4 p-2">
                   <a class="block border border-transparent hover:border-gray-400" href="#">
-                    <img class="w-full h-32 object-cover" src="/yofte-assets/images/product-bottle3.png" alt="">
+                    <img class="w-full h-32 object-cover" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/product-bottle3.png" alt="">
                   </a>
                 </div>
                 <div class="w-1/2 sm:w-1/4 p-2">
                   <a class="block border border-transparent hover:border-gray-400" href="#">
-                    <img class="w-full h-32 object-cover" src="/yofte-assets/images/product-bottle4.png" alt="">
+                    <img class="w-full h-32 object-cover" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/product-bottle4.png" alt="">
                   </a>
                 </div>
               </div>
@@ -46,19 +46,19 @@
                   <h2 class="mt-2 mb-6 max-w-xl text-5xl md:text-6xl font-bold font-heading">BRILE water filter carafe</h2>
                   <div class="mb-8">
                     <button>
-                      <img src="/yofte-assets/elements/star-gold.svg" alt="">
+                      <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/elements/star-gold.svg" alt="">
                     </button>
                     <button>
-                      <img src="/yofte-assets/elements/star-gold.svg" alt="">
+                      <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/elements/star-gold.svg" alt="">
                     </button>
                     <button>
-                      <img src="/yofte-assets/elements/star-gold.svg" alt="">
+                      <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/elements/star-gold.svg" alt="">
                     </button>
                     <button>
-                      <img src="/yofte-assets/elements/star-gold.svg" alt="">
+                      <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/elements/star-gold.svg" alt="">
                     </button>
                     <button>
-                      <img src="/yofte-assets/elements/star-gray.svg" alt="">
+                      <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/elements/star-gray.svg" alt="">
                     </button>
                   </div>
                   <p class="inline-block mb-8 text-2xl font-bold font-heading text-blue-300">
@@ -107,13 +107,13 @@
                 <div class="flex items-center">
                   <span class="mr-8 text-gray-500 font-bold font-heading uppercase">SHARE IT</span>
                   <a class="mr-1 w-8 h-8" href="#">
-                    <img src="/yofte-assets/buttons/facebook-circle.svg" alt="">
+                    <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/buttons/facebook-circle.svg" alt="">
                   </a>
                   <a class="mr-1 w-8 h-8" href="#">
-                    <img src="/yofte-assets/buttons/instagram-circle.svg" alt="">
+                    <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/buttons/instagram-circle.svg" alt="">
                   </a>
                   <a class="w-8 h-8" href="#">
-                    <img src="/yofte-assets/buttons/twitter-circle.svg" alt="">
+                    <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/buttons/twitter-circle.svg" alt="">
                   </a>
                 </div>
               </div>

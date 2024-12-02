@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout-blank>
     <section class="py-20 bg-gray-100 overflow-x-hidden">
         <div class="relative container px-4 mx-auto">
           <div class="relative max-w-4xl mx-auto">
@@ -6,7 +6,7 @@
             <div class="relative py-16 md:pt-32 md:pb-20 px-4 sm:px-8 bg-white">
               <div class="max-w-lg mx-auto text-center">
                 <a class="inline-block mb-14 text-3xl font-bold font-heading" href="#">
-                  <img class="h-9" src="/yofte-assets/logos/yofte-logo.svg" alt="" width="auto">
+                  <img class="h-9" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/logos/yofte-logo.svg" alt="" width="auto">
                 </a>
                 <h3 class="mb-8 text-4xl md:text-5xl font-bold font-heading">Signing up with social is super quick</h3>
                 <p class="mb-10 font-semibold font-heading">Please, do not hesitate</p>
@@ -25,4 +25,4 @@
           </div>
         </div>
     </section>
-</x-layout>
+</x-layout-blank>

@@ -1,5 +1,5 @@
 
-<x-layout>
+<div>
     <section class="relative">
         <div class="relative container mx-auto px-4">
             <img class="absolute bottom-0 right-0 h-80 -mb-16 lg:mb-0 md:h-full object-cover" src="/images/header2.png"
@@ -30,124 +30,47 @@
 
     <section class="py-20 bg-gray-100">
         <div class="container mx-auto px-4">
-            <h2 class="mb-16 md:mb-24 text-4xl md:text-5xl font-bold font-heading">Discover our products</h2>
+            <h2 class="mb-16 md:mb-24 text-4xl md:text-5xl font-bold font-heading">Discover our Events</h2>
             <div class="flex flex-wrap -mx-3 mb-24">
+              @foreach ($events as $event)
                 <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6 lg:mb-0">
                     <div class="relative bg-gray-50">
-                        <span
-                            class="absolute top-0 left-0 ml-6 mt-6 px-2 py-1 text-xs font-bold font-heading bg-white border-2 border-red-500 rounded-full text-red-500">-15%</span>
+                        {{-- <span class="absolute top-0 left-0 ml-6 mt-6 px-2 py-1 text-xs font-bold font-heading bg-white border-2 border-red-500 rounded-full text-red-500">-15%</span> --}}
                         <a class="block" href="#">
                             <img class="w-full h-64 object-cover"
-                                src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/placeholder-basketball-player.png" alt="">
+                                src="{{ $event->picture }}" alt="">
                         </a>
                         <div class="px-6 pb-6 mt-8">
                             <a class="block px-6 mb-2" href="#">
-                                <h3 class="mb-2 text-xl font-bold font-heading">NIKE basketball ball</h3>
+                                <h3 class="mb-2 text-xl font-bold font-heading">{{ $event->name }}</h3>
                                 <p class="text-lg font-bold font-heading text-blue-500">
-                                    <span>$34.30</span>
-                                    <span
-                                        class="text-xs text-gray-500 font-semibold font-heading line-through">$40.99</span>
+                                    <span>IDR {{ number_format( $event->price, '0', ',', '.').'.-' }}</span>
                                 </p>
                             </a>
                             <a class="ml-auto mr-2 flex items-center justify-center w-12 h-12 bg-blue-300 hover:bg-blue-400 rounded-md"
                                 href="#">
+                                {{-- request icon --}}
                                 <svg width="12" height="12" viewbox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect x="5" width="2" height="12" fill="white"></rect>
                                     <rect x="12" y="5" width="2" height="12" transform="rotate(90 12 5)"
                                         fill="white"></rect>
                                 </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6 lg:mb-0">
-                    <div class="relative bg-gray-50">
-                        <span
-                            class="absolute top-0 left-0 ml-6 mt-6 px-2 py-1 text-xs font-bold font-heading bg-white border-2 border-red-500 rounded-full text-red-500">-10%</span>
-                        <a class="block" href="#">
-                            <img class="w-full h-64 object-cover" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/placeholder-cream.png"
-                                alt="">
-                        </a>
-                        <div class="px-6 pb-6 mt-8">
-                            <a class="block px-6 mb-2" href="#">
-                                <h3 class="mb-2 text-xl font-bold font-heading">QUAI hand cream</h3>
-                                <p class="text-lg font-bold font-heading text-blue-500">
-                                    <span>$34.80</span>
-                                    <span
-                                        class="text-xs text-gray-500 font-semibold font-heading line-through">$39.70</span>
-                                </p>
-                            </a>
-                            <a class="ml-auto mr-2 flex items-center justify-center w-12 h-12 bg-blue-300 hover:bg-blue-400 rounded-md"
-                                href="#">
-                                <svg width="12" height="12" viewbox="0 0 12 12" fill="none"
+                                {{-- <svg width="12" height="12" viewbox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect x="5" width="2" height="12" fill="white"></rect>
                                     <rect x="12" y="5" width="2" height="12" transform="rotate(90 12 5)"
                                         fill="white"></rect>
-                                </svg>
+                                </svg> --}}
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6 md:mb-0">
-                    <div class="relative bg-gray-50">
-                        <span
-                            class="absolute top-0 left-0 ml-6 mt-6 px-2 py-1 text-xs font-bold font-heading bg-white border-2 border-red-500 rounded-full text-red-500">-15%</span>
-                        <a class="block" href="#">
-                            <img class="w-full h-64 object-cover" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/placeholder-surfing-blue.png"
-                                alt="">
-                        </a>
-                        <div class="px-6 pb-6 mt-8">
-                            <a class="block px-6 mb-2" href="#">
-                                <h3 class="mb-2 text-xl font-bold font-heading">Boards Surfing</h3>
-                                <p class="text-lg font-bold font-heading text-blue-500">
-                                    <span>$134.80</span>
-                                    <span
-                                        class="text-xs text-gray-500 font-semibold font-heading line-through">$149.90</span>
-                                </p>
-                            </a>
-                            <a class="ml-auto mr-2 flex items-center justify-center w-12 h-12 bg-blue-300 hover:bg-blue-400 rounded-md"
-                                href="#">
-                                <svg width="12" height="12" viewbox="0 0 12 12" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="5" width="2" height="12" fill="white"></rect>
-                                    <rect x="12" y="5" width="2" height="12" transform="rotate(90 12 5)"
-                                        fill="white"></rect>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/2 lg:w-1/4 px-3">
-                    <div class="relative bg-gray-50">
-                        <span
-                            class="absolute top-0 left-0 ml-6 mt-6 px-2 py-1 text-xs font-bold font-heading bg-white border-2 border-blue-400 rounded-full text-blue-500 uppercase">New</span>
-                        <a class="block" href="#">
-                            <img class="w-full h-64 object-cover" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/placeholder-gym.png"
-                                alt="">
-                        </a>
-                        <div class="px-6 pb-6 mt-8">
-                            <a class="block px-6 mb-2" href="#">
-                                <h3 class="mb-2 text-xl font-bold font-heading">Gym Set V1G</h3>
-                                <p class="text-lg font-bold font-heading text-blue-500">$49.90</p>
-                            </a>
-                            <a class="ml-auto mr-2 flex items-center justify-center w-12 h-12 bg-blue-300 hover:bg-blue-400 rounded-md"
-                                href="#">
-                                <svg width="12" height="12" viewbox="0 0 12 12" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="5" width="2" height="12" fill="white"></rect>
-                                    <rect x="12" y="5" width="2" height="12" transform="rotate(90 12 5)"
-                                        fill="white"></rect>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+              @endforeach
             </div>
             <div class="text-center">
                 <a class="inline-block bg-orange-300 hover:bg-orange-400 text-white font-bold font-heading py-6 px-8 rounded-md uppercase"
-                    href="#">Show More</a>
+                    href="/events">Show More</a>
             </div>
         </div>
     </section>
@@ -464,5 +387,4 @@
             </div>
         </div>
     </section>
-</x-layout>
-
+</div>

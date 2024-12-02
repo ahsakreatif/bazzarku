@@ -31,15 +31,9 @@
                   <div class="py-6 px-2 text-center bg-gray-50">
                     <a class="font-bold font-heading" href="#">Category</a>
                     <ul class="hidden text-left mt-6">
-                      <li class="mb-4"><a href="#">New in</a></li>
-                      <li class="mb-4"><a href="#">Activewear</a></li>
-                      <li class="mb-4"><a href="#">Hoodies &amp; Sweatshirts</a></li>
-                      <li class="mb-4"><a href="#">Jackets</a></li>
-                      <li class="mb-4"><a href="#">Multipacks</a></li>
-                      <li class="mb-4"><a href="#">Bags</a></li>
-                      <li class="mb-4"><a href="#">Sports</a></li>
-                      <li class="mb-4"><a href="#">Gifts</a></li>
-                      <li><a href="#">Notes</a></li>
+                      @foreach ($event_types as $type)
+                        <li class="mb-4"><a href="/events?type={{ $type->id }}">{{ $tpye->name }}</a></li>
+                      @endforeach
                     </ul>
                   </div>
                 </div>
@@ -237,7 +231,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-red-500 rounded-full text-red-500 bg-white">-15%</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/waterbottle.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/waterbottle.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">BRILE water filter</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$29.89</span>
@@ -253,7 +247,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-red-500 rounded-full text-red-500 bg-white">-15%</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/cycle.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/cycle.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Bicycle S20</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$14.30</span>
@@ -269,7 +263,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1"></span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/basketball.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/basketball.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Nike basketball ball</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$34.89</span>
@@ -285,7 +279,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-blue-300 rounded-full text-blue-300 bg-white">NEW</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/skateboard.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/skateboard.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Kiteboard WH-004</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$19.90</span>
@@ -301,7 +295,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-red-500 rounded-full text-red-500 bg-white">-10%</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/backpack.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/backpack.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Backpack Travel</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$21.99</span>
@@ -317,7 +311,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-red-500 rounded-full text-red-500 bg-white">-15%</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/cycle.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/cycle.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Bicycle S20</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$14.30</span>
@@ -333,7 +327,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-red-500 rounded-full text-red-500 bg-white">-15%</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/waterbottle.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/waterbottle.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">BRILE water filter</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$29.89</span>
@@ -349,7 +343,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-red-500 rounded-full text-red-500 bg-white">-15%</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/cycle.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/cycle.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Bicycle S20</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$14.30</span>
@@ -365,7 +359,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1"></span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/basketball.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/basketball.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Nike basketball ball</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$34.89</span>
@@ -381,7 +375,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-blue-300 rounded-full text-blue-300 bg-white">NEW</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/skateboard.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/skateboard.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Kiteboard WH-004</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$19.90</span>
@@ -397,7 +391,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-red-500 rounded-full text-red-500 bg-white">-10%</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/backpack.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/backpack.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Backpack Travel</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$21.99</span>
@@ -413,7 +407,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-red-500 rounded-full text-red-500 bg-white">-15%</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/cycle.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/cycle.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Bicycle S20</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$14.30</span>
@@ -429,7 +423,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-red-500 rounded-full text-red-500 bg-white">-15%</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/waterbottle.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/waterbottle.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">BRILE water filter</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$29.89</span>
@@ -445,7 +439,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1 text-xs font-bold font-heading border-2 border-red-500 rounded-full text-red-500 bg-white">-15%</span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/cycle.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/cycle.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Bicycle S20</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$14.30</span>
@@ -461,7 +455,7 @@
                   <div class="p-6 bg-gray-50">
                     <span class="px-2 py-1"></span>
                     <a class="block px-6 mt-6 mb-2" href="#">
-                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="/yofte-assets/images/basketball.png" alt="">
+                      <img class="mb-5 mx-auto h-56 w-full object-contain" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/basketball.png" alt="">
                       <h3 class="mb-2 text-xl font-bold font-heading">Nike basketball ball</h3>
                       <p class="text-lg font-bold font-heading text-blue-500">
                         <span>$34.89</span>

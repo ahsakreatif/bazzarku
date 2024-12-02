@@ -13,24 +13,24 @@
           </div>
           <div class="flex mb-16 md:mb-40">
             <a class="inline-flex items-center justify-center w-12 h-12 mr-2 bg-blue-500 rounded-full" href="#">
-              <img src="/yofte-assets/buttons/facebook-circle.svg" alt="">
+              <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/buttons/facebook-circle.svg" alt="">
             </a>
             <a class="inline-flex items-center justify-center w-12 h-12 mr-2 bg-indigo-300 rounded-full" href="#">
-              <img src="/yofte-assets/buttons/instagram-circle.svg" alt="">
+              <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/buttons/instagram-circle.svg" alt="">
             </a>
             <a class="inline-flex items-center justify-center w-12 h-12 bg-blue-300 rounded-full" href="#">
-              <img src="/yofte-assets/buttons/twitter-circle.svg" alt="">
+              <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/buttons/twitter-circle.svg" alt="">
             </a>
           </div>
           <div class="flex flex-wrap">
             <div class="w-1/3 px-1 mb-2 lg:mb-0">
-              <img class="w-full" src="/yofte-assets/brands/visa.svg" alt="">
+              <img class="w-full" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/brands/visa.svg" alt="">
             </div>
             <div class="w-1/3 px-1 mb-2 lg:mb-0">
-              <img class="w-full" src="/yofte-assets/brands/paypal.svg" alt="">
+              <img class="w-full" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/brands/paypal.svg" alt="">
             </div>
             <div class="w-1/3 px-1 mb-2 lg:mb-0">
-              <img class="w-full" src="/yofte-assets/brands/mastercard.svg" alt="">
+              <img class="w-full" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/brands/mastercard.svg" alt="">
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
             <ul>
               <li class="mb-6"><a class="hover:underline" href="#">Newsroom</a></li>
               <li class="mb-6"><a class="hover:underline" href="#">Story</a></li>
-              <li class="mb-6"><a class="hover:underline" href="#">Yofte Careers</a></li>
+              <li class="mb-6"><a class="hover:underline" href="#">Bazzarku Careers</a></li>
               <li class="mb-6"><a class="hover:underline" href="#">Investor Relations</a></li>
               <li class="mb-6"><a class="hover:underline" href="#">Reward program</a></li>
               <li class="mb-6"><a class="hover:underline" href="#">Delivery information</a></li>

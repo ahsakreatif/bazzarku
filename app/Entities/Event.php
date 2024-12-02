@@ -64,4 +64,13 @@ class Event extends Model implements Transformable
         return $this->hasMany(EventTenant::class);
     }
 
+    public function getPictureAttribute($value)
+    {
+        // check if it has http or https
+        if (strpos($value, 'http') === 0) {
+            return $value;
+        }
+        return $value ? asset('storage/' . $value) : null;
+    }
+
 }

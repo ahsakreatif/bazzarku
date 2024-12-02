@@ -2,7 +2,7 @@
     <nav class="flex justify-between border-b">
       <div class="px-12 py-8 flex w-full items-center">
         <div class="w-1/3">
-          <a class="flex-shrink-0 text-3xl font-bold font-heading" href="#">
+          <a class="flex-shrink-0 text-3xl font-bold font-heading" href="/">
             <img class="inline h-16" src="/images/logo.png" alt="" width="auto">
             <span class="inline">BAZZARKU</span>
             <!-- <img class="h-9" src="/images/logo-text.png" alt="" width="auto"> -->
@@ -32,13 +32,61 @@
           </select>
         </div>
       </div>
-      <a class="hidden xl:flex items-center px-12 border-l font-semibold font-heading hover:text-gray-600" href="#">
+      @if (!Auth::user())
+      <a class="hidden xl:flex items-center px-12 border-l font-semibold font-heading hover:text-gray-600" href="/login/tenant">
         <svg class="mr-3" width="32" height="31" viewbox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M16.0006 16.3154C19.1303 16.3154 21.6673 13.799 21.6673 10.6948C21.6673 7.59064 19.1303 5.07422 16.0006 5.07422C12.871 5.07422 10.334 7.59064 10.334 10.6948C10.334 13.799 12.871 16.3154 16.0006 16.3154Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
           <path d="M24.4225 23.8963C23.6678 22.3507 22.4756 21.0445 20.9845 20.1298C19.4934 19.2151 17.7647 18.7295 15.9998 18.7295C14.2349 18.7295 12.5063 19.2151 11.0152 20.1298C9.52406 21.0445 8.33179 22.3507 7.57715 23.8963" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
         <span>Sign&nbsp;In</span>
       </a>
+      @endif
+      @if (Auth::user() and Auth::user()->hasRole('tenant'))
+      <div class="hidden xl:flex items-center px-12 border-l font-semibold font-heading hover:text-gray-600">
+        <div class="relative group">
+          <button class="flex items-center">
+            @if (Auth::user()->tenant->picture)
+            <img class="h-10 w-10 rounded-full" src="{{ Auth::user()->tenant->picture }}" alt="{{ Auth::user()->name }}">
+            @else
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+            @endif
+            {{ Auth::user()->name }}
+          </button>
+          <div class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-lg shadow-lg z-10">
+            <ul class="text-lg font-semibold font-heading">
+              <li class="py-3 px-6 border-b border-gray-100"><a href="/user/profile">Profile</a></li>
+              <li class="py-3 px-6 border-b border-gray-100"><a href="/user/settings">History</a></li>
+              <li class="py-3 px-6"><a href="/logout">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      @endif
+      @if (Auth::user() and Auth::user()->hasRole('vendor'))
+      <div class="hidden xl:flex items-center px-12 border-l font-semibold font-heading hover:text-gray-600">
+        <div class="relative group">
+          <button class="flex items-center">
+            @if (Auth::user()->vendor->picture)
+            <img class="h-10 w-10 rounded-full" src="{{ Auth::user()->vendor->picture }}" alt="{{ Auth::user()->name }}">
+            @else
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+            @endif
+            {{ Auth::user()->name }}
+          </button>
+          <div class="hidden group-hover:block absolute top-6 -right-10 mt-2 w-48 bg-white border border-gray-100 rounded-lg shadow-lg z-10">
+            <ul class="text-lg font-semibold font-heading">
+              <li class="py-3 px-6 border-b border-gray-100"><a href="/admin">Vendor Panel</a></li>
+              <li class="py-3 px-6 border-b border-gray-100"><a href="/user/profile">Profile</a></li>
+              <li class="py-3 px-6"><a href="/logout">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      @endif
       <a class="xl:hidden flex mr-6 items-center text-gray-900" href="#">
         <svg class="mr-2" width="23" height="23" viewbox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M18.1159 8.72461H2.50427C1.99709 8.72461 1.58594 9.12704 1.58594 9.62346V21.3085C1.58594 21.8049 1.99709 22.2074 2.50427 22.2074H18.1159C18.6231 22.2074 19.0342 21.8049 19.0342 21.3085V9.62346C19.0342 9.12704 18.6231 8.72461 18.1159 8.72461Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
