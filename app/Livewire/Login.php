@@ -28,11 +28,13 @@ class Login extends Component
             return redirect()->route('dashboard');
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials.']);
+        session()->flash('error', 'Invalid credentials.');
+
+        // return redirect()->route('auth.login', ['type' => $this->type]);
     }
 
     public function render()
     {
-        return view('livewire.login');
+        return view('livewire.login', [ ]);
     }
 }

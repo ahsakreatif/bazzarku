@@ -38,9 +38,18 @@ class EventRepositoryEloquent extends BaseRepository implements EventRepository
         return $this->model->orderBy('created_at', 'desc')->paginate($limit);
     }
 
+    public function findBySlug($slug)
+    {
+        return $this->model->where('slug', $slug)->first();
+    }
+
     public function getFilter(array $filter)
     {
         $query = $this->model;
+
+        if (isset($filter['keyword'])) {
+            $query = $query->where('name', 'like', '%' . $filter['keyword'] . '%');
+        }
 
         if (isset($filter['event_type_id'])) {
             $query = $query->where('event_type_id', $filter['event_type_id']);

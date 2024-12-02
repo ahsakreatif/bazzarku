@@ -207,24 +207,14 @@
             </div>
           </div> --}}
           <div class="mb-6 py-10 px-12 bg-gray-50">
-            <h3 class="mb-8 text-2xl font-bold font-heading">Price</h3>
-            <div>
-              <input class="w-full mb-4 outline-none appearance-none bg-gray-100 h-1 rounded cursor-pointer" type="range" min="1" max="100" value="50">
-              <div class="flex justify-between">
-                <span class="inline-block text-lg font-bold font-heading text-blue-300">$0</span>
-                <span class="inline-block text-lg font-bold font-heading text-blue-300">$289</span>
-              </div>
-            </div>
-          </div>
-          <div class="mb-6 py-10 px-12 bg-gray-50">
             <h3 class="mb-8 text-2xl font-bold font-heading">Date</h3>
             <div class="mb-4">
               <label class="block text-lg font-bold font-heading" for="start_date">Start Date</label>
-              <input class="w-full px-8 py-4 bg-white border rounded-md" type="date" id="start_date" name="start_date">
+              <input class="w-full px-8 py-4 bg-white border rounded-md" type="date" id="start_date" name="start_date" wire:model.change="start_date">
             </div>
             <div>
               <label class="block text-lg font-bold font-heading" for="end_date">End Date</label>
-              <input class="w-full px-8 py-4 bg-white border rounded-md" type="date" id="end_date" name="end_date">
+              <input class="w-full px-8 py-4 bg-white border rounded-md" type="date" id="end_date" name="end_date" wire:model.change="end_date">
             </div>
           </div>
           {{-- <div class="mb-6 py-12 pl-12 pr-6 bg-gray-50">
@@ -267,11 +257,11 @@
             <h3 class="mb-6 text-2xl font-bold font-heading">Location</h3>
             <input class="w-full px-8 py-4 bg-white border rounded-md" typaaaaaaaae="serach" placeholder="City">
           </div> --}}
-          <div class="w-full px-2 mb-4">
+          {{-- <div class="w-full px-2 mb-4">
             <div class="py-6 px-4 text-center bg-gray-50">
               <button class="w-full bg-blue-300 hover:bg-blue-400 text-white font-bold font-heading py-4 px-8 rounded-md uppercase" type="submit">Apply Filter</button>
             </div>
-          </div>
+          </div> --}}
         </div>
         <div class="w-full lg:w-3/4 px-3">
           <div class="flex flex-wrap -mx-3">
@@ -279,7 +269,7 @@
               <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6 lg:mb-4">
                   <div class="relative bg-gray-50">
                       {{-- <span class="absolute top-0 left-0 ml-6 mt-6 px-2 py-1 text-xs font-bold font-heading bg-white border-2 border-red-500 rounded-full text-red-500">-15%</span> --}}
-                      <a class="block" href="#">
+                      <a class="block" href="/events/{{ $event->slug }}">
                           <img class="w-full h-64 object-cover"
                               src="{{ $event->picture }}" alt="">
                       </a>
@@ -291,7 +281,7 @@
                               </p>
                           </a>
                           <a class="ml-auto mr-2 flex items-center justify-center w-12 h-12 bg-blue-300 hover:bg-blue-400 rounded-md"
-                              href="/event/{{ $event->id }}/submit">
+                              href="/event/{{ $event->id }}/request">
                               {{-- request icon --}}
                               <svg width="12" height="12" viewbox="0 0 12 12" fill="none"
                                   xmlns="http://www.w3.org/2000/svg">

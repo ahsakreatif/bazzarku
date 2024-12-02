@@ -15,22 +15,22 @@
             <path d="M18 0.279297H0V2.53127H18V0.279297Z" fill="black"></path>
           </svg>
         </a> -->
-        <!-- <ul class="hidden xl:flex font-semibold font-heading">
-          <li class="mr-12"><a class="hover:text-gray-600" href="#">Category</a></li>
-          <li class="mr-12"><a class="hover:text-gray-600" href="#">Collection</a></li>
-        </ul> -->
-        <div class="hidden border-2 border-solid border-gray-100 w-2/3 xl:flex py-3 pl-8 pr-2 border-l-neutral-300 rounded-lg">
+        <ul class="hidden xl:flex font-semibold font-heading">
+          <li class="mr-12"><a class="hover:text-gray-600" href="/">Home</a></li>
+          <li class="mr-12"><a class="hover:text-gray-600" href="/events">Events</a></li>
+        </ul>
+        {{-- <div class="hidden border-2 border-solid border-gray-100 w-2/3 xl:flex py-3 pl-8 pr-2 border-l-neutral-300 rounded-lg">
           <svg class="w-8 h-10 mr-2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.5 17.1309L12.5042 11.9551" stroke="black" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
             <path d="M7.27524 13.8672C10.8789 13.8672 13.8002 10.945 13.8002 7.34033C13.8002 3.73565 10.8789 0.813477 7.27524 0.813477C3.67159 0.813477 0.750244 3.73565 0.750244 7.34033C0.750244 10.945 3.67159 13.8672 7.27524 13.8672Z" stroke="black" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
-          <input class="w-full focus:ring-transparent focus:outline-none py-2" type="text" placeholder="">
+          <input class="w-full focus:ring-transparent focus:outline-none mt-2" type="text" placeholder="search for events" wire:model="searchQuery" wire:input="$emit('searchUpdated', $event.target.value)">
           <select class="pl-6 pr-6 border-0 border-l border-gray-100 focus:border-gray-100 focus:ring-transparent focus:outline-none cursor-pointer" name="" id="">
             <option>All&nbsp;items</option>
             <option>Collection</option>
             <option>Option</option>
           </select>
-        </div>
+        </div> --}}
       </div>
       @if (!Auth::user())
       <a class="hidden xl:flex items-center px-12 border-l font-semibold font-heading hover:text-gray-600" href="/login/tenant">
