@@ -184,7 +184,7 @@
         </div>
     </section>
 
-    <section class="relative py-20">
+    {{-- <section class="relative py-20">
         <img class="hidden lg:block absolute top-0 left-0 mt-20" src="zeus-assets/icons/dots/blue-dot-left-bars.svg"
             alt="">
         <img class="hidden lg:block absolute top-0 right-0 mt-52" src="zeus-assets/icons/dots/yellow-dot-right-shield.svg"
@@ -266,7 +266,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="relative py-20 md:py-32 bg-blue-800 overflow-x-hidden">
         <img class="absolute h-24 md:h-auto top-0 left-0 right-0" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/elements/line-top.svg"
