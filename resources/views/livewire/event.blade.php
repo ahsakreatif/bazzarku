@@ -274,14 +274,14 @@
                               src="{{ $event->picture }}" alt="">
                       </a>
                       <div class="px-6 pb-6 mt-8">
-                          <a class="block px-6 mb-2" href="/event/{{ $event->id }}">
+                          <a class="block px-6 mb-2" href="/events/{{ $event->slug }}">
                               <h3 class="mb-2 text-xl font-bold font-heading">{{ $event->name }}</h3>
                               <p class="text-lg font-bold font-heading text-blue-500">
                                   <span>IDR {{ number_format( $event->price, '0', ',', '.').'.-' }}</span>
                               </p>
                           </a>
                           <a class="ml-auto mr-2 flex items-center justify-center w-12 h-12 bg-blue-300 hover:bg-blue-400 rounded-md"
-                              href="/event/{{ $event->id }}/request">
+                              href="/event/{{ $event->slug }}/request">
                               {{-- request icon --}}
                               <svg width="12" height="12" viewbox="0 0 12 12" fill="none"
                                   xmlns="http://www.w3.org/2000/svg">
