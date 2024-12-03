@@ -18,6 +18,9 @@
         <ul class="hidden xl:flex font-semibold font-heading">
           <li class="mr-12"><a class="hover:text-gray-600" href="/">Home</a></li>
           <li class="mr-12"><a class="hover:text-gray-600" href="/events">Events</a></li>
+          @if (Auth::user() and Auth::user()->hasRole('tenant'))
+          <li class="mr-12"><a class="hover:text-gray-600" href="/events/tenant">History</a></li>
+          @endif
         </ul>
         {{-- <div class="hidden border-2 border-solid border-gray-100 w-2/3 xl:flex py-3 pl-8 pr-2 border-l-neutral-300 rounded-lg">
           <svg class="w-8 h-10 mr-2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +49,7 @@
         <div class="relative group">
           <button class="flex items-center">
             @if (Auth::user()->tenant->picture)
-            <img class="h-10 w-10 rounded-full" src="{{ Auth::user()->tenant->picture }}" alt="{{ Auth::user()->name }}">
+              <img class="h-10 w-10 rounded-full" src="{{ Auth::user()->tenant->picture }}" alt="{{ Auth::user()->name }}">
             @else
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -54,7 +57,7 @@
             @endif
             {{ Auth::user()->name }}
           </button>
-          <div class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-lg shadow-lg z-10">
+          <div class="hidden group-hover:block absolute top-6 -right-10 mt-2 w-48 bg-white border border-gray-100 rounded-lg shadow-lg z-10">
             <ul class="text-lg font-semibold font-heading">
               <li class="py-3 px-6 border-b border-gray-100"><a href="/user/profile">Profile</a></li>
               <li class="py-3 px-6 border-b border-gray-100"><a href="/user/settings">History</a></li>

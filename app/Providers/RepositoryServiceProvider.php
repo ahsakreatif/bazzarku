@@ -25,6 +25,10 @@ class RepositoryServiceProvider extends PrettusRepositoryServiceProvider
             \App\Repositories\EventTypeRepository::class,
             \App\Repositories\EventTypeRepositoryEloquent::class,
         );
+        $this->app->bind(
+            \App\Repositories\EventTenantRepository::class,
+            \App\Repositories\EventTenantRepositoryEloquent::class,
+        );
     }
 
     /**

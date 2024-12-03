@@ -37,6 +37,9 @@ class UserTenant extends Model implements Transformable
 
     public function getPictureAttribute($value)
     {
+        if (strpos($value, 'http') === 0) {
+            return $value;
+        }
         return $value ? asset('storage/' . $value) : null;
     }
 }
