@@ -13,10 +13,9 @@ class RoleAndPermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        if (Role::count() == 1) {
-            Role::create(['name' => 'admin']);
-            Role::create(['name' => 'vendor']);
-            Role::create(['name' => 'tenant']);
-        }
+
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'vendor']);
+        Role::create(['name' => 'tenant']);
     }
 }

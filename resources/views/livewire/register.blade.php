@@ -8,7 +8,7 @@
             <img class="h-24" src="/images/logo.png" alt="" width="auto">
             </a>
             <h3 class="mb-8 text-4xl md:text-5xl font-heading font-bold" >Register Account</h3>
-            <form wire:submit="register">
+            <form wire:submit.prevent="register">
               <div class="flex justify-center mb-10">
                 <a class="mr-4 font-heading {{ $type == 'tenant' ? 'font-bold text-xl text-blue-700' : ''}}" href="{{ route('auth.register', ['type' => 'tenant' ]) }}">Tenant</a>
                 <div class="w-0.5 h-6 bg-gray-300"></div>
@@ -23,17 +23,17 @@
                 @endforeach
               </div>
               @endif
-              <input name="email" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="steven@example.dev">
-              <input name="name" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="Full Name">
-              <input name="phone_number" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="Phone Number">
+              <input wire:model="email" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="steven@example.dev">
+              <input wire:model="name" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="Full Name">
+              <input wire:model="phone_number" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="Phone Number">
               @if ($type == 'tenant')
-              <input name="tenant_name" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="Tenant Name">
+              <input wire:model="tenant_name" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="Tenant Name">
               @endif
               @if ($type == 'vendor')
-              <input name="vendor_name" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="Vendor Name">
+              <input wire:model="vendor_name" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="Vendor Name">
               @endif
-              <input name="password" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="password" placeholder="Password">
-              <input name="password_confirmation" class="w-full mb-10 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="password" placeholder="Repeat password">
+              <input wire:model="password" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="password" placeholder="Password">
+              <input wire:model="password_confirmation" class="w-full mb-10 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="password" placeholder="Repeat password">
               <label class="flex" for="">
                 <input class="mr-4 mt-1" type="checkbox">
                 <span class="text-sm">By signing up, you agree to our Terms, Data Policy and Cookies.</span>
