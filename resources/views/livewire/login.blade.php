@@ -23,6 +23,9 @@
                   </ul>
                 </div>
               @endif
+              @if (session('error'))
+                <div class="mb-4 text-red-500">{{ session('error') }}</div>
+              @endif
               <input name="email" wire:model.lazy="email" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="steven@example.dev">
               <input name="password" wire:model.lazy="password" class="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="password" placeholder="Password">
               <button type="submit" class="mt-12 md:mt-16 bg-blue-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">Sign In</button>

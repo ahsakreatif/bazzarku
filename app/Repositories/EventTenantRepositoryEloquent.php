@@ -25,7 +25,7 @@ class EventTenantRepositoryEloquent extends BaseRepository implements EventTenan
         return EventTenant::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +34,10 @@ class EventTenantRepositoryEloquent extends BaseRepository implements EventTenan
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    public function findByTenantId($tenantId)
+    {
+        return $this->model->where('tenant_id', $tenantId)->get();
+    }
+
 }
