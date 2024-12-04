@@ -35,7 +35,7 @@
               <p class="inline-block mb-8 text-2xl font-bold font-heading text-blue-300">
                 <span>IDR {{ number_format($event->price, 0, ',', '.') }}</span>
               </p>
-              <p class="max-w-md text-gray-500">{{ $event->description }}</p>
+              <p class="max-w-md text-gray-500">{!! $event->description !!}</p>
             </div>
             <div class="flex flex-wrap -mx-4 mb-14 items-center">
               <div class="w-full xl:w-2/3 px-4 mb-4 xl:mb-0"><a class="block bg-orange-300 hover:bg-orange-400 text-center text-white font-bold font-heading py-5 px-8 rounded-md uppercase transition duration-200" href="/events/{{ $event->slug }}/request">Book</a></div>
