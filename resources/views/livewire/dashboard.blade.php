@@ -36,12 +36,12 @@
                 <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6 lg:mb-0">
                     <div class="relative bg-gray-50">
                         {{-- <span class="absolute top-0 left-0 ml-6 mt-6 px-2 py-1 text-xs font-bold font-heading bg-white border-2 border-red-500 rounded-full text-red-500">-15%</span> --}}
-                        <a class="block" href="#">
+                        <a class="block" href="/events/{{ $event->slug }}">
                             <img class="w-full h-64 object-cover"
                                 src="{{ $event->picture }}" alt="">
                         </a>
                         <div class="px-6 pb-6 mt-8">
-                            <a class="block px-6 mb-2" href="#">
+                            <a class="block px-6 mb-2" href="/events/{{ $event->slug }}">
                                 <h3 class="mb-2 text-xl font-bold font-heading">{{ $event->name }}</h3>
                                 <p class="text-lg font-bold font-heading text-blue-500">
                                     <span>IDR {{ number_format( $event->price, '0', ',', '.').'.-' }}</span>
