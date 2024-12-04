@@ -38,7 +38,7 @@
               <p class="max-w-md text-gray-500">{{ $event->description }}</p>
             </div>
             <div class="flex flex-wrap -mx-4 mb-14 items-center">
-              <div class="w-full xl:w-2/3 px-4 mb-4 xl:mb-0"><a class="block bg-orange-300 hover:bg-orange-400 text-center text-white font-bold font-heading py-5 px-8 rounded-md uppercase transition duration-200" href="/events/{{ $event->slug }}/request">Join</a></div>
+              <div class="w-full xl:w-2/3 px-4 mb-4 xl:mb-0"><a class="block bg-orange-300 hover:bg-orange-400 text-center text-white font-bold font-heading py-5 px-8 rounded-md uppercase transition duration-200" href="/events/{{ $event->slug }}/request">Book</a></div>
               <div class="w-full xl:w-1/3 px-4">
                 <a class="ml-auto sm:ml-0 flex-shrink-0 inline-flex mr-4 items-center justify-center w-16 h-16 rounded-md border hover:border-gray-500" href="#">
                   <svg class="w-6 h-6" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">

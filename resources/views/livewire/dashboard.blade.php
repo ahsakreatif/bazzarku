@@ -21,7 +21,7 @@
                             Tenants and Event Hosts</h2>
                         <p class="mb-20 text-lg text-gray-600">Discover, Book, and Collaborate Seamlessly.</p>
                         <a class="inline-block bg-orange-300 hover:bg-orange-400 text-white font-bold font-heading py-6 px-8 rounded-md uppercase transition duration-200"
-                            href="#">Book Now</a>
+                            href="/events">Book Now</a>
                     </div>
                 </div>
             </div>

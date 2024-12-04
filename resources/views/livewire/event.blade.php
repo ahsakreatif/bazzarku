@@ -12,7 +12,6 @@
             <select class="pl-8 py-4 bg-white text-lg border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" name="sort" id="sort" wire:model="sort" wire:change="setSort">
               <option value="newest">Sort by newest</option>
               <option value="price">Sort by price</option>
-              <option value="3">Sort by most popular</option>
             </select>
           </div>
           <a class="inline-block mr-3 h-full p-4 bg-white rounded-md border" href="#">

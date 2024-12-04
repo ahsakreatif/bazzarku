@@ -73,6 +73,13 @@ class EventRepositoryEloquent extends BaseRepository implements EventRepository
             $query = $query->where('end_date', '<=', $filter['end_date']);
         }
 
-        return $query->orderBy('created_at', 'desc')->paginate(10);
+        if (isset($filter['order_at'])) {
+            $query = $query->orderBy($filter['order_at'], $filter['order_by']);
+        }
+
+        $limit = $filter['limit'] ?? 10;
+        $offset = $filter['offset'] ?? 0;
+
+        return $query->take($limit)->skip($offset)->get();
     }
 }
