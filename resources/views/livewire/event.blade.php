@@ -9,9 +9,9 @@
         </div>
         <div class="w-full lg:w-auto px-4 flex flex-wrap items-center">
           <div class="w-full sm:w-auto mb-4 sm:mb-0 mr-5">
-            <select class="pl-8 py-4 bg-white text-lg border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" name="" id="">
-              <option value="1">Sort by newest</option>
-              <option value="2">Sort by price</option>
+            <select class="pl-8 py-4 bg-white text-lg border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" name="sort" id="sort" wire:model="sort" wire:change="setSort">
+              <option value="newest">Sort by newest</option>
+              <option value="price">Sort by price</option>
               <option value="3">Sort by most popular</option>
             </select>
           </div>
@@ -314,7 +314,7 @@
         </div>
       </div>
       <div class="text-center">
-        <a class="inline-block bg-orange-300 hover:bg-orange-400 text-white font-bold font-heading py-6 px-8 rounded-md uppercase" href="#">Show More</a>
+        <a class="inline-block bg-orange-300 hover:bg-orange-400 text-white font-bold font-heading py-6 px-8 rounded-md uppercase" href="#" wire:click.prevent="showMore">Show More</a>
       </div>
     </div>
 </section>
