@@ -74,4 +74,5 @@ return [
         public_path('storage') => storage_path('app/public'),
     ],
 
+    'public_cdn' => env('PUBLIC_CDN', '/storage'),
 ];

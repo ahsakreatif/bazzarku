@@ -27,15 +27,15 @@ class StatusSubmit
     ];
 
     public static $status_colors = [
-        self::START => 'gray',
-        self::PENDING => 'warning',
-        self::PAID => 'info',
-        self::PARTLY => 'info',
-        self::FINISHED => 'success',
-        self::CANCELED => 'danger',
-        self::ERROR => 'danger',
-        self::REJECTED => 'danger',
-        self::UNDEFINED => 'gray'
+        self::START => 'gray-500',
+        self::PENDING => 'yellow-500',
+        self::PAID => 'green-500',
+        self::PARTLY => 'green-700',
+        self::FINISHED => 'blue-500',
+        self::CANCELED => 'gray-500',
+        self::ERROR => 'red-500',
+        self::REJECTED => 'red-500',
+        self::UNDEFINED => 'gray-500'
     ];
 
     public static function getLabel($status)

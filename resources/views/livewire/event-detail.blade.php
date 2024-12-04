@@ -3,46 +3,18 @@
       <div class="flex flex-wrap -mx-4 mb-24">
         <div class="w-full md:w-1/2 px-4 mb-8 md:mb-0">
           <div class="relative mb-10" style="height: 564px;">
-            <a class="absolute top-1/2 left-0 ml-8 transform translate-1/2" href="#">
-              <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 16.0185C9.268 16.2905 9.268 16.7275 9 16.9975C8.732 17.2675 8.299 17.2685 8.031 16.9975L0.201 9.0895C-0.067 8.8195 -0.067 8.3825 0.201 8.1105L8.031 0.2025C8.299 -0.0675 8.732 -0.0675 9 0.2025C9.268 0.4735 9.268 0.9115 9 1.1815L1.859 8.6005L9 16.0185Z" fill="#1F40FF"></path>
-              </svg>
-            </a>
-            <img class="object-cover w-full h-full" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/product-bottle.png" alt="">
-            <a class="absolute top-1/2 right-0 mr-8 transform translate-1/2" href="#">
-              <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0.19922 1.1817C-0.0687795 0.909696 -0.0687794 0.472695 0.19922 0.202695C0.46722 -0.0673054 0.90022 -0.0683048 1.16822 0.202695L8.99822 8.11069C9.26622 8.3807 9.26622 8.81769 8.99822 9.08969L1.16822 16.9977C0.900219 17.2677 0.467218 17.2677 0.199219 16.9977C-0.0687809 16.7267 -0.0687808 16.2887 0.199219 16.0187L7.34022 8.5997L0.19922 1.1817Z" fill="#1F40FF"></path>
-              </svg>
-            </a>
-          </div>
-          <div class="flex flex-wrap -mx-2">
-            <div class="w-1/2 sm:w-1/4 p-2">
-              <a class="block border border-blue-300" href="#">
-                <img class="w-full h-32 object-cover" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/product-bottle.png" alt="">
-              </a>
-            </div>
-            <div class="w-1/2 sm:w-1/4 p-2">
-              <a class="block border border-transparent hover:border-gray-400" href="#">
-                <img class="w-full h-32 object-cover" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/product-bottle2.png" alt="">
-              </a>
-            </div>
-            <div class="w-1/2 sm:w-1/4 p-2">
-              <a class="block border border-transparent hover:border-gray-400" href="#">
-                <img class="w-full h-32 object-cover" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/product-bottle3.png" alt="">
-              </a>
-            </div>
-            <div class="w-1/2 sm:w-1/4 p-2">
-              <a class="block border border-transparent hover:border-gray-400" href="#">
-                <img class="w-full h-32 object-cover" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/images/product-bottle4.png" alt="">
-              </a>
-            </div>
+            @if ($event->picture)
+              <img class="object-cover w-full h-full" src="{{ $event->picture }}" alt="">
+            @else
+            <img class="object-cover w-full h-full" src="/images/placeholder.jpg" alt="">
+            @endif
           </div>
         </div>
         <div class="w-full md:w-1/2 px-4">
           <div class="lg:pl-20">
             <div class="mb-10 pb-10 border-b">
-              <span class="text-gray-500">Brille</span>
-              <h2 class="mt-2 mb-6 max-w-xl text-5xl md:text-6xl font-bold font-heading">BRILE water filter carafe</h2>
+              <span class="text-gray-500">{{ $event->user->name }}</span>
+              <h2 class="mt-2 mb-6 max-w-xl text-5xl md:text-6xl font-bold font-heading">{{ $event->name }}</h2>
               <div class="mb-8">
                 <button>
                   <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/elements/star-gold.svg" alt="">
@@ -61,35 +33,12 @@
                 </button>
               </div>
               <p class="inline-block mb-8 text-2xl font-bold font-heading text-blue-300">
-                <span>$29.99</span>
-                <span class="font-normal text-base text-gray-400 line-through">$33.69</span>
+                <span>IDR {{ number_format($event->price, 0, ',', '.') }}</span>
               </p>
-              <p class="max-w-md text-gray-500">Maecenas commodo libero ut molestie dictum. Morbi placerat eros id porttitor sagittis.</p>
-            </div>
-            <div class="flex mb-12">
-              <div class="mr-6">
-                <span class="block mb-4 font-bold font-heading text-gray-400 uppercase">QTY</span>
-                <div class="inline-flex items-center px-4 font-semibold font-heading text-gray-500 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md">
-                  <button class="py-2 hover:text-gray-700">
-                    <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.35"><rect x="12" width="2" height="12" transform="rotate(90 12 0)" fill="currentColor"></rect></g></svg>
-                  </button>
-                  <input class="w-12 m-0 px-2 py-4 text-center md:text-right border-0 focus:ring-transparent focus:outline-none rounded-md" type="number" placeholder="1">
-                  <button class="py-2 hover:text-gray-700">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.35"><rect x="5" width="2" height="12" fill="currentColor"></rect><rect x="12" y="5" width="2" height="12" transform="rotate(90 12 5)" fill="currentColor"></rect></g></svg>
-                  </button>
-                </div>
-              </div>
-              <div>
-                <span class="block mb-4 font-bold font-heading text-gray-400 uppercase">Size</span>
-                <select class="pl-6 pr-10 py-4 font-semibold font-heading text-gray-500 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" name="" id="">
-                  <option value="1">Medium</option>
-                  <option value="2">Small</option>
-                  <option value="3">Large</option>
-                </select>
-              </div>
+              <p class="max-w-md text-gray-500">{{ $event->description }}</p>
             </div>
             <div class="flex flex-wrap -mx-4 mb-14 items-center">
-              <div class="w-full xl:w-2/3 px-4 mb-4 xl:mb-0"><a class="block bg-orange-300 hover:bg-orange-400 text-center text-white font-bold font-heading py-5 px-8 rounded-md uppercase transition duration-200" href="#">Add to cart</a></div>
+              <div class="w-full xl:w-2/3 px-4 mb-4 xl:mb-0"><a class="block bg-orange-300 hover:bg-orange-400 text-center text-white font-bold font-heading py-5 px-8 rounded-md uppercase transition duration-200" href="/events/{{ $event->slug }}/request">Join</a></div>
               <div class="w-full xl:w-1/3 px-4">
                 <a class="ml-auto sm:ml-0 flex-shrink-0 inline-flex mr-4 items-center justify-center w-16 h-16 rounded-md border hover:border-gray-500" href="#">
                   <svg class="w-6 h-6" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -117,16 +66,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <ul class="flex flex-wrap mb-16 border-b-2">
-          <li class="w-1/2 md:w-auto"><a class="inline-block py-6 px-10 bg-white text-gray-500 font-bold font-heading shadow-2xl" href="#">Description</a></li>
-          <li class="w-1/2 md:w-auto"><a class="inline-block py-6 px-10 text-gray-500 font-bold font-heading" href="#">Customer reviews</a></li>
-          <li class="w-1/2 md:w-auto"><a class="inline-block py-6 px-10 text-gray-500 font-bold font-heading" href="#">Shipping &amp; returns</a></li>
-          <li class="w-1/2 md:w-auto"><a class="inline-block py-6 px-10 text-gray-500 font-bold font-heading" href="#">Brand</a></li>
-        </ul>
-        <h3 class="mb-8 text-3xl font-bold font-heading text-blue-300">Summer collection and laoreet get</h3>
-        <p class="max-w-2xl text-gray-500">I had interdum at ante porta, eleifend feugiat nunc. In semper euismod mi a accums lorem sad. Morbi at auctor nibh. Aliquam tincidunt placerat mollis. Lorem euismod dignissim, felis tortor ollis eros, non ultricies turpis.</p>
       </div>
     </div>
 </section>

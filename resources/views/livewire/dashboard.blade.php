@@ -36,19 +36,19 @@
                 <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6 lg:mb-0">
                     <div class="relative bg-gray-50">
                         {{-- <span class="absolute top-0 left-0 ml-6 mt-6 px-2 py-1 text-xs font-bold font-heading bg-white border-2 border-red-500 rounded-full text-red-500">-15%</span> --}}
-                        <a class="block" href="#">
+                        <a class="block" href="/events/{{ $event->slug }}">
                             <img class="w-full h-64 object-cover"
                                 src="{{ $event->picture }}" alt="">
                         </a>
                         <div class="px-6 pb-6 mt-8">
-                            <a class="block px-6 mb-2" href="#">
+                            <a class="block px-6 mb-2" href="/events/{{ $event->slug }}">
                                 <h3 class="mb-2 text-xl font-bold font-heading">{{ $event->name }}</h3>
                                 <p class="text-lg font-bold font-heading text-blue-500">
                                     <span>IDR {{ number_format( $event->price, '0', ',', '.').'.-' }}</span>
                                 </p>
                             </a>
                             <a class="ml-auto mr-2 flex items-center justify-center w-12 h-12 bg-blue-300 hover:bg-blue-400 rounded-md"
-                                href="#">
+                                href="/events/{{$event->slug}}/request">
                                 {{-- request icon --}}
                                 <svg width="12" height="12" viewbox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -184,7 +184,7 @@
         </div>
     </section>
 
-    <section class="relative py-20">
+    {{-- <section class="relative py-20">
         <img class="hidden lg:block absolute top-0 left-0 mt-20" src="zeus-assets/icons/dots/blue-dot-left-bars.svg"
             alt="">
         <img class="hidden lg:block absolute top-0 right-0 mt-52" src="zeus-assets/icons/dots/yellow-dot-right-shield.svg"
@@ -266,7 +266,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="relative py-20 md:py-32 bg-blue-800 overflow-x-hidden">
         <img class="absolute h-24 md:h-auto top-0 left-0 right-0" src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/elements/line-top.svg"
