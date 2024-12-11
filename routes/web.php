@@ -6,6 +6,7 @@ use App\Livewire\Login;
 use App\Livewire\Register;
 use App\Livewire\Event;
 use App\Livewire\EventDetail;
+use App\Livewire\UserProfile;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', Dashboard::class)->name('dashboard');
@@ -18,3 +19,5 @@ Route::get('/logout', function () {
 
 Route::get('/events', Event::class)->name('events');
 Route::get('/events/{id}', EventDetail::class)->name('events.detail');
+
+Route::get('/profile/{tenantName}', UserProfile::class)->name('profile');
