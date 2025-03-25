@@ -19,6 +19,7 @@ Route::get('/logout', function () {
 })->name('auth.logout');
 
 Route::get('/events', Event::class)->name('events');
+Route::get('/rentals', Event::class)->name('rentals');
 Route::get('/events/tenant', EventRequest::class)->name('event.request');
 Route::get('/events/{slug}', EventDetail::class)->name('events.detail');
 Route::get('/events/{slug}/request', [ EventController::class, 'request' ] )->name('events.request');

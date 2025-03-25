@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard - BAZZARKU.com</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/bazzarku.png">
+    <style>
+        .carousel-item {
+            display: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .carousel-item.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="antialiased bg-gray-50">
+    <!-- Add this right after opening body tag -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="min-h-screen flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg w-full max-w-md p-6 relative">
+                <!-- Close button -->
+                <button onclick="closeLoginModal()" class="absolute right-4 top-4 text-gray-400 hover:text-gray-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+
+                <!-- Login Form -->
+                <div class="space-y-6">
+                    <h2 class="text-xl font-semibold text-center">Sign in with email</h2>
+
+                    <form class="space-y-4">
+                        <!-- Email -->
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-3 flex items-center">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <input type="email" 
+                                class="w-full pl-12 pr-4 py-3 bg-gray-100 rounded-lg focus:outline-none" 
+                                placeholder="Email"
+                            >
+                        </div>
+
+                        <!-- Password -->
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-3 flex items-center">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                </svg>
+                            </div>
+                            <input type="password" 
+                                class="w-full pl-12 pr-10 py-3 bg-gray-100 rounded-lg focus:outline-none" 
+                                placeholder="Password"
+                            >
+                            <button type="button" class="absolute inset-y-0 right-3 flex items-center">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Login Button -->
+                        <button type="submit" class="w-full bg-primary-700 text-white py-3 rounded-lg font-medium">
+                            Login
+                        </button>
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-200"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">or sign in with</span>
+                        </div>
+                    </div>
+
+                    <!-- Social Login Buttons -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <button class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5">
+                        </button>
+                        <button class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                            <svg class="w-5 h-5" viewBox="0 0 384 512">
+                                <path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Register Link -->
+                    <div class="text-center">
+                        <p class="text-sm text-gray-600">
+                            Don't have an account? 
+                            <a href="/register" class="text-primary-700 hover:underline font-medium">Register Now</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this after the login modal and before the navigation -->
+    <div id="eventDetailModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="min-h-screen flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg w-full max-w-4xl relative">
+                <!-- Close button -->
+                <button onclick="closeEventModal()" class="absolute right-4 top-4 text-gray-400 hover:text-gray-600 z-10">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+
+                <div class="flex flex-col md:flex-row">
+                    <!-- Left side - Image -->
+                    <div class="w-full md:w-1/2">
+                        <img src="https://placehold.co/800x600/333/FFFFFF/png" alt="Event Image" 
+                            class="w-full h-[300px] md:h-full object-cover rounded-t-lg md:rounded-l-lg md:rounded-tr-none">
+                    </div>
+
+                    <!-- Right side - Content -->
+                    <div class="w-full md:w-1/2 p-6 space-y-4">
+                        <div class="space-y-4">
+                            <h2 class="text-2xl font-bold">Sound System</h2>
+                            
+                            <div class="flex items-center text-2xl font-bold text-primary-700">
+                                <span>Rp.1.000.000,00</span>
+                            </div>
+
+                            <div class="flex items-center text-gray-600">
+                                <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                </svg>
+                                <span>Tangerang</span>
+                            </div>
+
+                            <div class="border-t border-gray-200 pt-4">
+                                <h3 class="text-lg font-semibold mb-2">Description</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                                    <br><br>
+                                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Contact Button -->
+                        <div class="pt-6">
+                            <a href="https://wa.me/1234567890" target="_blank" 
+                                class="flex items-center justify-center gap-2 w-full bg-green-500 text-white py-3 rounded-lg font-medium hover:bg-green-600 transition duration-200">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                                </svg>
+                                Contact us Through WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-primary-700 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="/" class="flex items-center">
+                        <img class="h-8 w-auto" src="/bazzarku.png" alt="Bazzarku Logo">
+                        <span class="ml-2 text-xl font-bold">BAZZARKU</span>
+                    </a>
+                </div>
+
+                <!-- Add this inside the nav element, right after the logo div -->
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-white hover:bg-primary-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:block">
+                    <div class="flex items-center space-x-8">
+                        <a href="/" class="font-medium">Home</a>
+                        <a href="/rental" class="font-medium">Rental</a>
+                        <a href="/events" class="font-medium">Events</a>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-xl mx-8">
+                    <div class="relative">
+                        <input type="search" 
+                            class="w-full bg-white text-gray-900 rounded-md pl-4 pr-10 py-2 focus:outline-none"
+                            placeholder="Search...">
+                        <button class="absolute right-3 top-2.5">
+                            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Login Button -->
+                <div>
+                    <button onclick="openLoginModal()" class="bg-white text-primary-700 px-6 py-2 rounded-md font-medium">
+                        Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Add this right after the nav element -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden">
+        <div class="fixed inset-y-0 left-0 w-64 bg-white transform transition-transform duration-300 ease-in-out -translate-x-full" id="sidebar">
+            <div class="bg-primary-700 p-6 space-y-6">
+                <!-- Close button -->
+                <div class="flex justify-end">
+                    <button id="close-mobile-menu" class="p-2 text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Mobile Logo -->
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="/bazzarku.png" alt="Bazzarku Logo">
+                    <span class="ml-2 text-xl font-bold text-white">BAZZARKU</span>
+                </div>
+            </div>
+            <div class="p-6 space-y-6">
+                
+
+                <!-- Mobile Navigation Links -->
+                <nav class="space-y-4">
+                    <a href="/" class="block py-2.5 px-4 rounded-lg text-gray-900 hover:bg-gray-100">Home</a>
+                    <a href="/rental" class="block py-2.5 px-4 rounded-lg text-gray-900 hover:bg-gray-100">Rental</a>
+                    <a href="/events" class="block py-2.5 px-4 rounded-lg text-gray-900 hover:bg-gray-100">Events</a>
+                </nav>
+
+                <!-- Mobile Login Button -->
+                <div class="mt-6">
+                    <button onclick="closeMenuAndOpenLogin()" 
+                        class="w-full bg-primary-700 text-white py-2.5 px-4 rounded-lg font-medium hover:bg-primary-800">
+                        Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Hero Carousel -->
+        <div class="relative mb-12">
+            <div class="rounded-lg overflow-hidden">
+                <!-- Carousel images -->
+                <div class="relative">
+                    <div class="carousel-item active">
+                        <img src="https://placehold.co/1200x400/03269E/FFFFFF/png?text=Event+1" alt="Event banner 1" class="w-full h-[400px] object-cover">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://placehold.co/1200x400/0441FF/FFFFFF/png?text=Event+2" alt="Event banner 2" class="w-full h-[400px] object-cover">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://placehold.co/1200x400/0055FF/FFFFFF/png?text=Event+3" alt="Event banner 3" class="w-full h-[400px] object-cover">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://placehold.co/1200x400/0066FF/FFFFFF/png?text=Event+4" alt="Event banner 4" class="w-full h-[400px] object-cover">
+                    </div>
+
+                    <!-- Navigation Arrows -->
+                    <button class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full" onclick="moveSlide(-1)">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <button class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full" onclick="moveSlide(1)">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Carousel indicators -->
+                <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2" id="carousel-indicators">
+                    <button class="h-2 w-2 rounded-full bg-primary-700" onclick="setSlide(0)"></button>
+                    <button class="h-2 w-2 rounded-full bg-gray-300" onclick="setSlide(1)"></button>
+                    <button class="h-2 w-2 rounded-full bg-gray-300" onclick="setSlide(2)"></button>
+                    <button class="h-2 w-2 rounded-full bg-gray-300" onclick="setSlide(3)"></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add this after the carousel section and before the Upcoming Events section -->
+        <section class="mb-12">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                <h2 class="text-2xl font-bold text-primary-700">Nearest Event</h2>
+                
+                <!-- Filter Controls -->
+                <div class="flex flex-col sm:flex-row gap-4 mt-4 sm:mt-0">
+                    <!-- Sort by Area -->
+                    <div class="relative">
+                        <select class="appearance-none bg-white border border-primary-700 text-primary-700 px-4 py-2 pr-8 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-primary-700 focus:border-transparent">
+                            <option value="">Sort by Area</option>
+                            <option value="jakarta">Jakarta</option>
+                            <option value="tangerang">Tangerang</option>
+                            <option value="bekasi">Bekasi</option>
+                            <option value="depok">Depok</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-primary-700">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Sort by Category -->
+                    <div class="relative">
+                        <select class="appearance-none bg-white border border-primary-700 text-primary-700 px-4 py-2 pr-8 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-primary-700 focus:border-transparent">
+                            <option value="">Sort by Category</option>
+                            <option value="concert">Concert</option>
+                            <option value="exhibition">Exhibition</option>
+                            <option value="conference">Conference</option>
+                            <option value="workshop">Workshop</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-primary-700">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Event Card 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <img src="https://placehold.co/400x250/333/FFFFFF/png" alt="Urban Sneaker Society" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Urban Sneaker Society 2024</h3>
+                        <div class="flex items-center text-gray-600">
+                            <svg class="h-5 w-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            </svg>
+                            <span>ICE BSD</span>
+                            <span class="ml-auto">Oct 25-27</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <img src="https://placehold.co/400x250/FF69B4/FFFFFF/png" alt="Wonderland" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Wonderland by USS 2024</h3>
+                        <div class="flex items-center text-gray-600">
+                            <svg class="h-5 w-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            </svg>
+                            <span>JIEXPO</span>
+                            <span class="ml-auto">March 17-19</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <img src="https://placehold.co/400x250/444/FFFFFF/png" alt="USS Yard Sale" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">USS YARD SALE</h3>
+                        <div class="flex items-center text-gray-600">
+                            <svg class="h-5 w-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            </svg>
+                            <span>City Hall,PIM 3</span>
+                            <span class="ml-auto">March 29-31</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool Rentals Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-primary-700 mb-6">Tool Rentals</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Large Cards Row -->
+                <div class="relative h-72 rounded-lg overflow-hidden group cursor-pointer" onclick="openEventModal()">
+                    <img src="https://placehold.co/800x400/333/FFFFFF/png" alt="Stage Equipment" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20 flex items-end">
+                        <h3 class="text-white text-xl font-semibold p-6">Stage and Audio Visual Equipment</h3>
+                    </div>
+                </div>
+
+                <div class="relative h-72 rounded-lg overflow-hidden group cursor-pointer" onclick="openEventModal()">
+                    <img src="https://placehold.co/800x400/666/FFFFFF/png" alt="Decor" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20 flex items-end">
+                        <h3 class="text-white text-xl font-semibold p-6">Decor and Furniture</h3>
+                    </div>
+                </div>
+
+                <!-- Small Cards Row -->
+                <div class="relative h-72 rounded-lg overflow-hidden group cursor-pointer" onclick="openEventModal()">
+                    <img src="https://placehold.co/800x400/555/FFFFFF/png" alt="Booths" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20 flex items-end">
+                        <h3 class="text-white text-xl font-semibold p-6">Booths & Exhibition Equipment</h3>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="relative h-[140px] rounded-lg overflow-hidden group cursor-pointer" onclick="openEventModal()">
+                        <img src="https://placehold.co/800x200/777/FFFFFF/png" alt="Transportation" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20 flex items-end">
+                            <h3 class="text-white text-lg font-semibold p-4">Transportation & Logistics</h3>
+                        </div>
+                    </div>
+
+                    <div class="relative h-[140px] rounded-lg overflow-hidden group cursor-pointer" onclick="openEventModal()">
+                        <img src="https://placehold.co/800x200/999/FFFFFF/png" alt="Catering" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20 flex items-end">
+                            <h3 class="text-white text-lg font-semibold p-4">Catering & Food Equipment</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Your Events Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-primary-700 mb-6">Add your Events</h2>
+            <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+                <div class="flex items-center space-x-4 cursor-pointer hover:opacity-80 transition-opacity">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-gray-900">Your Event</h3>
+                        <div class="flex items-center text-gray-500 text-sm mt-1">
+                            <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            </svg>
+                            <span>Location</span>
+                            <span class="mx-2">•</span>
+                            <span>Start Date-End Date</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-700 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="/bazzarku.png" alt="Bazzarku Logo">
+                    <div class="ml-8 space-x-6">
+                        <a href="/" class="hover:underline">Home</a>
+                        <a href="/rental" class="hover:underline">Rental</a>
+                        <a href="/events" class="hover:underline">Events</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="font-medium">Contact Us</span>
+                    <a href="#" class="hover:opacity-80">
+                        <img src="https://placehold.co/24/ffffff/000000.png" alt="WhatsApp" class="h-6 w-6">
+                    </a>
+                    <a href="#" class="hover:opacity-80">
+                        <img src="https://placehold.co/24/ffffff/000000.png" alt="TikTok" class="h-6 w-6">
+                    </a>
+                    <a href="#" class="hover:opacity-80">
+                        <img src="https://placehold.co/24/ffffff/000000.png" alt="YouTube" class="h-6 w-6">
+                    </a>
+                    <a href="#" class="hover:opacity-80">
+                        <img src="https://placehold.co/24/ffffff/000000.png" alt="Instagram" class="h-6 w-6">
+                    </a>
+                </div>
+            </div>
+            <div class="mt-4 text-sm text-gray-300">
+                Hak Cipta © 2025 Bazaarku. Hak Cipta Dilindungi Undang-undang.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add this before closing body tag -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const indicators = document.querySelectorAll('#carousel-indicators button');
+        const totalSlides = slides.length;
+
+        // Auto-advance slides every 5 seconds
+        const autoSlideInterval = setInterval(() => moveSlide(1), 5000);
+
+        function updateSlides() {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('bg-primary-700'));
+            indicators.forEach(indicator => indicator.classList.add('bg-gray-300'));
+            
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.remove('bg-gray-300');
+            indicators[currentSlide].classList.add('bg-primary-700');
+        }
+
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateSlides();
+        }
+
+        function setSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateSlides();
+        }
+
+        // Pause auto-advance on hover
+        const carousel = document.querySelector('.relative.mb-12');
+        carousel.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+        carousel.addEventListener('mouseleave', () => setInterval(() => moveSlide(1), 5000));
+
+        // Initialize
+        updateSlides();
+
+        // Login Modal Functions
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLoginModal();
+            }
+        });
+
+        // Toggle password visibility
+        const togglePassword = document.querySelector('button[type="button"]');
+        const passwordInput = document.querySelector('input[type="password"]');
+        
+        togglePassword?.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Update icon based on password visibility
+            const eyeIcon = this.querySelector('svg');
+            if (type === 'password') {
+                eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                `;
+            } else {
+                eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
+                `;
+            }
+        });
+
+        // Add this to your existing script section
+        function openEventModal(event) {
+            document.getElementById('eventDetailModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEventModal() {
+            document.getElementById('eventDetailModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('eventDetailModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEventModal();
+            }
+        });
+
+        // Add click handlers to all rental cards
+        document.querySelectorAll('.group.cursor-pointer').forEach(card => {
+            card.addEventListener('click', openEventModal);
+        });
+
+        // Mobile Menu Functions
+        const mobileMenu = document.getElementById('mobile-menu');
+        const sidebar = document.getElementById('sidebar');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+
+        function openMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            // Animate sidebar in
+            setTimeout(() => {
+                sidebar.classList.remove('-translate-x-full');
+            }, 50);
+        }
+
+        function closeMobileMenu() {
+            // Animate sidebar out
+            sidebar.classList.add('-translate-x-full');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        function closeMenuAndOpenLogin() {
+            closeMobileMenu();
+            setTimeout(() => {
+                openLoginModal();
+            }, 300);
+        }
+
+        mobileMenuButton.addEventListener('click', openMobileMenu);
+        closeMobileMenuButton.addEventListener('click', closeMobileMenu);
+
+        // Close menu when clicking outside sidebar
+        mobileMenu.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMobileMenu();
+            }
+        });
+
+        // Close mobile menu on window resize if screen becomes larger
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) { // md breakpoint
+                closeMobileMenu();
+            }
+        });
+    </script>
+</body>
+</html> 
