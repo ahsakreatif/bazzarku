@@ -1,1 +1,1 @@
-<img src="/images/logo.png" alt="Logo" class="h-10">
+<img src="/images/bazzarku.jpg" alt="Logo" class="h-32 mt-4 rounded-lg">

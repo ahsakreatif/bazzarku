@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // using transaction
-        DB::transaction(function () {
+    DB::transaction(function () {
         $faker = Faker::create();
             for ($i = 0; $i < 10; $i++) {
                 $user = User::create([

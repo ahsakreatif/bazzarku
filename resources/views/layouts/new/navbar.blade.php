@@ -68,11 +68,11 @@
                                 @if(Auth::user()->hasRole('vendor'))
                                     <li><a href="{{ route('admin') }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('Vendor Panel') }}</a></li>
                                 @endif
-                                <li><a href="{{ route('user.profile') }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('Profile') }}</a></li>
+                                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">{{ __('Profile') }}</a></li>
                                 @if(Auth::user()->hasRole('tenant'))
                                     <li><a href="{{ route('user.settings') }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('History') }}</a></li>
                                 @endif
-                                <li><a href="{{ route('logout') }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('Logout') }}</a></li>
+                                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">{{ __('Logout') }}</a></li>
                             </ul>
                         </div>
                     </div>

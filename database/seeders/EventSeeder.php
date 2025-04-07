@@ -9,7 +9,7 @@ use App\Entities\User;
 use Faker\Factory as Faker;
 use App\Constants\StatusEvent;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Str;
 class EventSeeder extends Seeder
 {
     /**
@@ -32,6 +32,8 @@ class EventSeeder extends Seeder
             for ($i = 0; $i < 5; $i++) {
                 EventType::create([
                     'name' => $event_types[$i],
+                    'slug' => strtolower($event_types[$i]),
+                    'picture' => $faker->imageUrl('640', '480', 'events', true),
                     'description' => $event_types[$i] . ' Event Type Description'
                 ]);
             }

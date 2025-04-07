@@ -57,7 +57,7 @@
               <a class="mr-1 w-8 h-8" href="#">
                 <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/buttons/facebook-circle.svg" alt="">
               </a>
-              <a class="mr-1 w-8 h-8" href="#">
+              <a class="mr-1 w-8 h-8" href="#"> 
                 <img src="{{ config('filesystems.public_cdn')}}/shuffle/yofte-assets/buttons/instagram-circle.svg" alt="">
               </a>
               <a class="w-8 h-8" href="#">

@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -19,9 +18,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use SolutionForest\FilamentAccessManagement\FilamentAccessManagementPanel;
-use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
-
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -31,8 +28,25 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->registration()
+            ->passwordReset()
+            ->emailVerification()
+            ->profile()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => [
+                    50 => '#eef3ff',
+                    100 => '#dce6ff',
+                    200 => '#bcd0ff',
+                    300 => '#8eafff',
+                    400 => '#5c83ff',
+                    500 => '#3558ff',
+                    600 => '#1a34ff',
+                    700 => '#03269E', // Base primary color
+                    800 => '#021d7a',
+                    900 => '#021a66',
+                    950 => '#000d3b',
+                ],
+                'secondary' => Color::Gray,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -54,17 +68,16 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                \Hasnayeen\Themes\Http\Middleware\SetTheme::class
             ])
             ->authMiddleware([
                 Authenticate::class,
             ])
             ->plugins([
-                FilamentAccessManagementPanel::make(),
-                \Hasnayeen\Themes\ThemesPlugin::make(),
+                FilamentShieldPlugin::make(),
             ])
-            ->favicon(url('images/logo.png'))
-            ->brandLogo(url('images/logo.png'))
+            ->viteTheme('resources/css/filament/admin/theme.css')
+            ->favicon(url('images/bazzarku.jpg'))
+            ->brandLogo(url('images/bazzarku.jpg'))
             ->brandName(config('app.name'));
     }
 }
