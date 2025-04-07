@@ -4,14 +4,20 @@ const indicators = document.querySelectorAll('#carousel-indicators button');
 const totalSlides = slides.length;
 
 // Auto-advance slides every 5 seconds
-const autoSlideInterval = setInterval(() => moveSlide(1), 5000);
+let autoSlideInterval = setInterval(() => moveSlide(1), 5000);
 
 function updateSlides() {
-    slides.forEach(slide => slide.classList.remove('active'));
-    indicators.forEach(indicator => indicator.classList.remove('bg-primary-700'));
-    indicators.forEach(indicator => indicator.classList.add('bg-gray-300'));
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+        slide.style.opacity = '0';
+    });
+    indicators.forEach(indicator => {
+        indicator.classList.remove('bg-primary-700');
+        indicator.classList.add('bg-gray-300');
+    });
 
     slides[currentSlide].classList.add('active');
+    slides[currentSlide].style.opacity = '1';
     indicators[currentSlide].classList.remove('bg-gray-300');
     indicators[currentSlide].classList.add('bg-primary-700');
 }
@@ -28,8 +34,13 @@ function setSlide(slideIndex) {
 
 // Pause auto-advance on hover
 const carousel = document.querySelector('.relative.mb-12');
-carousel.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-carousel.addEventListener('mouseleave', () => setInterval(() => moveSlide(1), 5000));
+carousel.addEventListener('mouseenter', () => {
+    clearInterval(autoSlideInterval);
+});
+carousel.addEventListener('mouseleave', () => {
+    clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(() => moveSlide(1), 5000);
+});
 
 // Initialize
 updateSlides();
