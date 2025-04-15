@@ -25,21 +25,21 @@ class CommoditySeeder extends Seeder
             'Catering & Food'
         ];
 
-        foreach ($types as $type) {
-            CommodityType::create([
-                'name' => $type,
-                'slug' => strtolower($type),
-                'picture' => $faker->imageUrl('640', '480', 'commodity_types', true),
-            ]);
-        }
+        DB::transaction(function () use ($faker, $types) {
+            foreach ($types as $type) {
+                CommodityType::create([
+                    'name' => $type,
+                    'slug' => strtolower($type),
+                    'picture' => 'https://picsum.photos/id/20/640/480',
+                ]);
+            }
 
-        DB::transaction(function () use ($faker) {
             $commodities = [
                 [
                     'name' => 'Stage and Visual',
                     'slug' => 'stage-and-visual',
                     'description' => 'Stage and Visual Description',
-                    'picture' => $faker->imageUrl('640', '480', 'commodities', true),
+                    'picture' => 'https://picsum.photos/id/21/640/480',
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'status' => 'active',
                     'commodity_type_id' => 1,
@@ -49,7 +49,7 @@ class CommoditySeeder extends Seeder
                     'name' => 'Decor Furniture',
                     'slug' => 'decor-furniture',
                     'description' => 'Decor Furniture Description',
-                    'picture' => $faker->imageUrl('640', '480', 'commodities', true),
+                    'picture' => 'https://picsum.photos/id/22/640/480',
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'status' => 'active',
                     'commodity_type_id' => 2,
@@ -59,7 +59,7 @@ class CommoditySeeder extends Seeder
                     'name' => 'Booth & Exhibition',
                     'slug' => 'booth-and-exhibition',
                     'description' => 'Booth & Exhibition Description',
-                    'picture' => $faker->imageUrl('640', '480', 'commodities', true),
+                    'picture' => 'https://picsum.photos/id/23/640/480',
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'status' => 'active',
                     'commodity_type_id' => 3,
@@ -69,7 +69,7 @@ class CommoditySeeder extends Seeder
                     'name' => 'Transportation & Logistics',
                     'slug' => 'transportation-and-logistics',
                     'description' => 'Transportation & Logistics Description',
-                    'picture' => $faker->imageUrl('640', '480', 'commodities', true),
+                    'picture' => 'https://picsum.photos/id/24/640/480',
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'status' => 'active',
                     'commodity_type_id' => 4,
@@ -79,7 +79,7 @@ class CommoditySeeder extends Seeder
                     'name' => 'Catering & Food',
                     'slug' => 'catering-and-food',
                     'description' => 'Catering & Food Description',
-                    'picture' => $faker->imageUrl('640', '480', 'commodities', true),
+                    'picture' => 'https://picsum.photos/id/25/640/480',
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'status' => 'active',
                     'commodity_type_id' => 5,
@@ -87,7 +87,7 @@ class CommoditySeeder extends Seeder
                 ]
             ];
 
-            for ($i = 0; $i < 20; $i++) {
+            for ($i = 0; $i < count($commodities); $i++) {
                 $user = User::role('vendor')->inRandomOrder()->first();
 
                 Commodity::create([

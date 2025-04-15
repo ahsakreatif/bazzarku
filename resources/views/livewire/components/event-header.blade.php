@@ -1,24 +1,16 @@
 <div class="relative mb-12">
+  @if ($events->count() > 0)
   <div class="rounded-lg overflow-hidden">
       <!-- Carousel images -->
       <div class="relative h-[400px]">
           <div class="carousel-container relative h-full">
+              @foreach ($events as $event)
               <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out active">
-                  <img src="https://placehold.co/1200x400/03269E/FFFFFF/png?text=Event+1" alt="Event banner 1"
+                  <img src="{{ $event->picture }}"
+                      alt="{{ $event->name }}"
                       class="w-full h-full object-cover">
               </div>
-              <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out">
-                  <img src="https://placehold.co/1200x400/0441FF/FFFFFF/png?text=Event+2" alt="Event banner 2"
-                      class="w-full h-full object-cover">
-              </div>
-              <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out">
-                  <img src="https://placehold.co/1200x400/0055FF/FFFFFF/png?text=Event+3" alt="Event banner 3"
-                      class="w-full h-full object-cover">
-              </div>
-              <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out">
-                  <img src="https://placehold.co/1200x400/0066FF/FFFFFF/png?text=Event+4" alt="Event banner 4"
-                      class="w-full h-full object-cover">
-              </div>
+              @endforeach
           </div>
 
           <!-- Navigation Arrows -->
@@ -40,10 +32,10 @@
 
       <!-- Carousel indicators -->
       <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2" id="carousel-indicators">
-          <button class="h-2 w-2 rounded-full bg-primary-700" onclick="setSlide(0)"></button>
-          <button class="h-2 w-2 rounded-full bg-gray-300" onclick="setSlide(1)"></button>
-          <button class="h-2 w-2 rounded-full bg-gray-300" onclick="setSlide(2)"></button>
-          <button class="h-2 w-2 rounded-full bg-gray-300" onclick="setSlide(3)"></button>
+          @foreach ($events as $i => $event)
+          <button class="h-2 w-2 rounded-full bg-primary-700" onclick="setSlide({{ $i }})"></button>
+          @endforeach
       </div>
   </div>
+  @endif
 </div>

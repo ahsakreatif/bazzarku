@@ -28,10 +28,11 @@ class Event extends Model implements Transformable
         'picture',
         'start_date',
         'end_date',
-        'event_type_id',
-        'user_id',
+        'price',
         'status',
-        'price'
+        'is_promoted',
+        'event_type_id',
+        'user_id'
     ];
 
     public function type()
