@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', Dashboard::class)->name('dashboard');
 Route::get('/login/{type}', Login::class)->name('auth.login');
 Route::get('/register/{type}', Register::class)->name('auth.register');
+
+// group for auth
+Route::middleware('auth')->group(function () {
+    Route::get('/logout', function () {
+        Auth::logout();
+        return redirect()->route('dashboard');
+    })->name('auth.logout');
+    // Route::get('/user/profile', Profile::class)->name('user.profile');
+});
+
 Route::get('/logout', function () {
     Auth::logout();
     return redirect()->route('dashboard');

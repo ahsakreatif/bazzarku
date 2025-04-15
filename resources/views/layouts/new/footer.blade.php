@@ -20,19 +20,19 @@
                   $socialLinks = [
                       'whatsapp' => [
                           'url' => config('social.whatsapp', '#'),
-                          'icon' => config('filesystems.public_cdn') . '/icons/whatsapp.png'
+                          'icon' => url('/images/icons/whatsapp.png')
                       ],
                       'tiktok' => [
                           'url' => config('social.tiktok', '#'),
-                          'icon' => config('filesystems.public_cdn') . '/icons/tiktok.png'
+                          'icon' => url('/images/icons/tiktok.png')
                       ],
                       'youtube' => [
                           'url' => config('social.youtube', '#'),
-                          'icon' => config('filesystems.public_cdn') . '/icons/youtube.png'
+                          'icon' => url('/images/icons/youtube.png')
                       ],
                       'instagram' => [
                           'url' => config('social.instagram', '#'),
-                          'icon' => config('filesystems.public_cdn') . '/icons/instagram.png'
+                          'icon' => url('/images/icons/instagram.png')
                       ],
                   ];
               @endphp
