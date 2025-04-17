@@ -77,7 +77,7 @@
               <div class="text-center">
                   <p class="text-sm text-gray-600">
                       Don't have an account?
-                      <a href="/register" class="text-primary-700 hover:underline font-medium">Register Now</a>
+                      <a href="#" onclick="openSignupModal()" class="text-primary-700 hover:underline font-medium">Register Now</a>
                   </p>
               </div>
           </div>

@@ -20,6 +20,7 @@
     </div>
 
     @include("layouts.new.login")
+    @include("layouts.new.signup")
 
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
