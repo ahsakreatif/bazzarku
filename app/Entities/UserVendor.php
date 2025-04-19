@@ -26,7 +26,8 @@ class UserVendor extends Model implements Transformable
         'description',
         'picture',
         'avg_rating',
-        'user_id'
+        'user_id',
+        'location'
     ];
 
     public function user()

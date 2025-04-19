@@ -8,6 +8,9 @@
     <!-- Tool Rentals Section -->
     <livewire:commodity-widget />
 
+    <!-- Vendor Section -->
+    <livewire:vendor-widget />
+
     <!-- Add Your Events Section -->
     <section class="mb-12">
         <h2 class="text-2xl font-bold text-primary-700 mb-6">Add your Events</h2>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('picture')->nullable();
             $table->float('avg_rating')->default(0);
+            $table->string('location')->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');

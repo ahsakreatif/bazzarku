@@ -19,7 +19,7 @@
         @endif
     </div>
 
-    @include("layouts.new.login")
+    @include("layouts.new.signin")
     @include("layouts.new.signup")
 
     <script src="{{ asset('js/app.js') }}"></script>
