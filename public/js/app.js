@@ -104,9 +104,9 @@ document.getElementById('eventDetailModal').addEventListener('click', function(e
 });
 
 // Add click handlers to all rental cards
-document.querySelectorAll('.group.cursor-pointer').forEach(card => {
+/* document.querySelectorAll('.group.cursor-pointer').forEach(card => {
     card.addEventListener('click', openEventModal);
-});
+}); */
 
 // Mobile Menu Functions
 const mobileMenu = document.getElementById('mobile-menu');

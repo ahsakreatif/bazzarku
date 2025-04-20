@@ -3,23 +3,21 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Entities\Event;
-use Livewire\Attributes\On;
+use App\Entities\UserVendor;
 
-class EventDetail extends Component
+class VendorDetail extends Component
 {
     public $isOpen = false;
-    public $event;
+    public $vendor;
 
     public function mount()
     {
         $this->isOpen = false;
     }
 
-    #[On('showEvent')]
-    public function showEvent($eventId)
+    public function showVendor($vendorId)
     {
-        $this->event = Event::with('user')->find($eventId);
+        $this->vendor = UserVendor::find($vendorId);
         $this->isOpen = true;
     }
 
@@ -30,6 +28,6 @@ class EventDetail extends Component
 
     public function render()
     {
-        return view('livewire.event-detail');
+        return view('livewire.vendor-detail');
     }
 }

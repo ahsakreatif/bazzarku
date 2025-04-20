@@ -43,8 +43,9 @@
   <!-- Event Cards Grid -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       @foreach ($events as $event)
-    <!-- Event Card 1 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        <!-- Event Card 1 -->
+      <div wire:click="dispatch('showEvent', { eventId: {{ $event->id }} })"
+           class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
           <img src="{{ $event->picture }}" alt="{{ $event->name }}"
               class="w-full h-48 object-cover">
           <div class="p-4">
@@ -54,8 +55,8 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   </svg>
-                  <span>{{ $event->user->name }}</span>
-                  <span class="ml-auto">{{ date('d F Y', strtotime($event->start_date)) }} - {{ date('d F Y', strtotime($event->end_date)) }}</span>
+                  <span>{{ $event->location }}</span>
+                  <span class="ml-auto">{{ $event->date }}</span>
               </div>
           </div>
       </div>

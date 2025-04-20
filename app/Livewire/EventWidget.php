@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Entities\Event;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class EventWidget extends Component
 {
@@ -21,6 +22,16 @@ class EventWidget extends Component
             if ($event->picture && !str_starts_with($event->picture, 'http')) {
                 $event->picture = url($event->picture);
             }
+            $start_date = Carbon::parse($event->start_date);
+            $end_date = Carbon::parse($event->end_date);
+
+            if ($start_date->format('m') === $end_date->format('m')) {
+                $date = $start_date->format('d') . '-' . $end_date->format('d M y');
+            } else {
+                $date = $start_date->format('d M y') . ' - ' . $end_date->format('d M y');
+            }
+
+            $event->date = $date;
         }
     }
 

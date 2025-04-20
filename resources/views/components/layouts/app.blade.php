@@ -22,6 +22,6 @@
     @include("layouts.new.signin")
     @include("layouts.new.signup")
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 </body>
 </html>

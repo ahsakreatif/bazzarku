@@ -15,9 +15,12 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // logoipsum list of logo
+        $logos = [330, 329, 327, 325, 323, 321, 317, 311, 300, 299, 298, 297, 296, 295, 294, 293, 292, 291, 290, 289];
         // using transaction
-    DB::transaction(function () {
-        $faker = Faker::create();
+        DB::transaction(function () use ($logos) {
+            $faker = Faker::create();
             for ($i = 0; $i < 10; $i++) {
                 $user = User::create([
                     'name' => $faker->name,
@@ -32,7 +35,7 @@ class UserSeeder extends Seeder
                         'vendor_name' => $faker->name,
                         'phone_number' => $faker->phoneNumber,
                         'description' => $faker->text,
-                        'picture' => $faker->imageUrl(),
+                        'picture' => 'https://img.logoipsum.com/' . $logos[array_rand($logos)] . '.png',
                     ]);
                 }
 
@@ -44,7 +47,7 @@ class UserSeeder extends Seeder
                         'phone_number' => $faker->phoneNumber,
                         'address' => $faker->address,
                         'city' => $faker->city,
-                        'picture' => $faker->imageUrl(),
+                        'picture' => 'https://img.logoipsum.com/' . $logos[array_rand($logos)] . '.png',
                         'profile' => $faker->text
                     ]);
                 }

@@ -5,7 +5,7 @@
       <div class="relative h-[400px]">
           <div class="carousel-container relative h-full">
               @foreach ($events as $event)
-              <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out active">
+              <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out active"  wire:click="dispatch('showEvent', { eventId: {{ $event->id }} })">
                   <img src="{{ $event->picture }}"
                       alt="{{ $event->name }}"
                       class="w-full h-full object-cover">

@@ -51,6 +51,7 @@ class EventSeeder extends Seeder
                     'end_date' => now()->addDays(30),
                     'event_type_id' => $faker->numberBetween(1, 5),
                     'user_id' => $user->id,
+                    'location' => $faker->city(),
                     'status' => StatusEvent::ACTIVE,
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'is_promoted' => $faker->boolean,
