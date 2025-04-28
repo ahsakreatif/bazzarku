@@ -24,7 +24,7 @@
                 <div class="flex items-center space-x-8">
                     <a href="{{ route('dashboard') }}" class="font-medium">Home</a>
                     <a href="{{ route('events') }}" class="font-medium">Events</a>
-                    <a href="{{ route('rentals') }}" class="font-medium">Rental</a>
+                    <a href="{{ route('commodity.list') }}" class="font-medium">Rental</a>
                     @auth
                         @if(Auth::user()->hasRole('tenant'))
                             <a href="{{ route('events.tenant') }}" class="font-medium">History</a>
@@ -109,7 +109,7 @@
             <!-- Mobile Navigation Links -->
             <nav class="space-y-4">
                 <a href="{{ route('dashboard') }}" class="block py-2.5 px-4 rounded-lg text-gray-900 hover:bg-gray-100">Home</a>
-                <a href="{{ route('rentals') }}" class="block py-2.5 px-4 rounded-lg text-gray-900 hover:bg-gray-100">Rental</a>
+                <a href="{{ route('commodity.list') }}" class="block py-2.5 px-4 rounded-lg text-gray-900 hover:bg-gray-100">Rental</a>
                 <a href="{{ route('events') }}" class="block py-2.5 px-4 rounded-lg text-gray-900 hover:bg-gray-100">Events</a>
             </nav>
 

@@ -10,7 +10,7 @@
     <livewire:event-widget />
 
     <!-- Tool Rentals Section -->
-    <livewire:commodity-widget />
+    <livewire:commodity-type-widget />
 
     <!-- Vendor Section -->
     <livewire:vendor-widget />

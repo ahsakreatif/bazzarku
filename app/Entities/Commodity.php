@@ -17,6 +17,7 @@ class Commodity extends Model implements Transformable
         'picture',
         'price',
         'status',
+        'location',
         'commodity_type_id',
         'user_id',
     ];

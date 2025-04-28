@@ -20,17 +20,17 @@ class CommoditySeeder extends Seeder
         $types = [
             'Stage and Visual',
             'Decor Furniture',
-            'Booth & Exhibition',
-            'Transportation & Logistics',
-            'Catering & Food'
+            'Booth and Exhibition',
+            'Transportation and Logistics',
+            'Catering and Food'
         ];
 
         DB::transaction(function () use ($faker, $types) {
-            foreach ($types as $type) {
+            foreach ($types as $i => $type) {
                 CommodityType::create([
                     'name' => $type,
-                    'slug' => strtolower($type),
-                    'picture' => 'https://picsum.photos/id/20/640/480',
+                    'slug' => str_replace(' ', '-', strtolower($type)),
+                    'picture' => 'https://picsum.photos/id/' . $i+21 . '/640/480',
                 ]);
             }
 
@@ -42,6 +42,7 @@ class CommoditySeeder extends Seeder
                     'picture' => 'https://picsum.photos/id/21/640/480',
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'status' => 'active',
+                    'location' => 'Tangerang',
                     'commodity_type_id' => 1,
                     'user_id' => 1,
                 ],
@@ -52,6 +53,7 @@ class CommoditySeeder extends Seeder
                     'picture' => 'https://picsum.photos/id/22/640/480',
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'status' => 'active',
+                    'location' => 'Jakarta',
                     'commodity_type_id' => 2,
                     'user_id' => 1,
                 ],
@@ -62,6 +64,7 @@ class CommoditySeeder extends Seeder
                     'picture' => 'https://picsum.photos/id/23/640/480',
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'status' => 'active',
+                    'location' => 'Tangerang',
                     'commodity_type_id' => 3,
                     'user_id' => 1,
                 ],
@@ -72,6 +75,7 @@ class CommoditySeeder extends Seeder
                     'picture' => 'https://picsum.photos/id/24/640/480',
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'status' => 'active',
+                    'location' => 'Jakarta',
                     'commodity_type_id' => 4,
                     'user_id' => 1,
                 ],
@@ -82,6 +86,7 @@ class CommoditySeeder extends Seeder
                     'picture' => 'https://picsum.photos/id/25/640/480',
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'status' => 'active',
+                    'location' => 'Jakarta',
                     'commodity_type_id' => 5,
                     'user_id' => 1,
                 ]
@@ -97,6 +102,7 @@ class CommoditySeeder extends Seeder
                     'picture' => $commodities[$i]['picture'],
                     'price' => $commodities[$i]['price'],
                     'status' => $commodities[$i]['status'],
+                    'location' => $commodities[$i]['location'],
                     'commodity_type_id' => $commodities[$i]['commodity_type_id'],
                     'user_id' => $user->id,
                 ]);

@@ -7,7 +7,7 @@
               <div class="ml-8 space-x-6">
                   @foreach(config('navigation.footer', [
                       'dashboard' => 'Home',
-                      'rentals' => 'Rental',
+                      'commodity.list' => 'Rental',
                       'events' => 'Events'
                   ]) as $route => $label)
                       <a href="{{ route($route) }}" class="hover:underline">{{ $label }}</a>

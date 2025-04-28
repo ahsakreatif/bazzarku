@@ -27,6 +27,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('picture')->nullable();
             $table->float('price')->default(0);
+            $table->string('location')->nullable();
             $table->string('status')->default('draft');
             $table->unsignedBigInteger('commodity_type_id');
             $table->unsignedBigInteger('user_id');
