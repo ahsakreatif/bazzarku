@@ -1,5 +1,27 @@
+// Global variables
+let currentSlide = 0;
+let slides = [];
+let indicators = [];
+let totalSlides = 0;
+let autoSlideInterval;
+let mobileMenu;
+let sidebar;
+let mobileMenuButton;
+let closeMobileMenuButton;
+
 // Burger menus
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize carousel elements
+    slides = document.querySelectorAll('.carousel-item');
+    indicators = document.querySelectorAll('#carousel-indicators button');
+    totalSlides = slides.length;
+
+    // Initialize mobile menu elements
+    mobileMenu = document.getElementById('mobile-menu');
+    sidebar = document.getElementById('sidebar');
+    mobileMenuButton = document.getElementById('mobile-menu-button');
+    closeMobileMenuButton = document.getElementById('close-mobile-menu');
+
     // open
     const burger = document.querySelectorAll('.navbar-burger');
     const menu = document.querySelectorAll('.navbar-menu');
@@ -38,14 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-item');
-    const indicators = document.querySelectorAll('#carousel-indicators button');
-    const totalSlides = slides.length;
-
     // Auto-advance slides every 5 seconds
-    let autoSlideInterval = setInterval(() => moveSlide(1), 5000);
-
+    autoSlideInterval = setInterval(() => moveSlide(1), 5000);
 
     // Pause auto-advance on hover
     const carousel = document.querySelector('.relative.mb-12');
@@ -96,19 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-
-    // Add click handlers to all rental cards
-    /* document.querySelectorAll('.group.cursor-pointer').forEach(card => {
-        card.addEventListener('click', openEventModal);
-    }); */
-
     // Mobile Menu Functions
-    const mobileMenu = document.getElementById('mobile-menu');
-    const sidebar = document.getElementById('sidebar');
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const closeMobileMenuButton = document.getElementById('close-mobile-menu');
-
-
     mobileMenuButton.addEventListener('click', openMobileMenu);
     closeMobileMenuButton.addEventListener('click', closeMobileMenu);
 
@@ -132,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
             closeSignupModal();
         }
     });
-
 
     // Update the toggle password functionality to work for both modals
     const togglePasswords = document.querySelectorAll('button[type="button"]');

@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Entities\User;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
-
+use Illuminate\Support\Str;
 class UserSeeder extends Seeder
 {
     /**
@@ -15,6 +15,15 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        // add admin user
+        $admin = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@bazzarku.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+        ]);
+        $admin->assignRole('super-admin');
 
         // logoipsum list of logo
         $logos = [330, 329, 327, 325, 323, 321, 317, 311, 300, 299, 298, 297, 296, 295, 294, 293, 292, 291, 290, 289];
