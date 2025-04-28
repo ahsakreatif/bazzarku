@@ -46,31 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Auto-advance slides every 5 seconds
     let autoSlideInterval = setInterval(() => moveSlide(1), 5000);
 
-    function updateSlides() {
-        slides.forEach(slide => {
-            slide.classList.remove('active');
-            slide.style.opacity = '0';
-        });
-        indicators.forEach(indicator => {
-            indicator.classList.remove('bg-primary-700');
-            indicator.classList.add('bg-gray-300');
-        });
-
-        slides[currentSlide].classList.add('active');
-        slides[currentSlide].style.opacity = '1';
-        indicators[currentSlide].classList.remove('bg-gray-300');
-        indicators[currentSlide].classList.add('bg-primary-700');
-    }
-
-    function moveSlide(direction) {
-        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-        updateSlides();
-    }
-
-    function setSlide(slideIndex) {
-        currentSlide = slideIndex;
-        updateSlides();
-    }
 
     // Pause auto-advance on hover
     const carousel = document.querySelector('.relative.mb-12');
@@ -84,17 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize
     updateSlides();
-
-    // Login Modal Functions
-    function openLoginModal() {
-        document.getElementById('loginModal').classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-    }
-
-    function closeLoginModal() {
-        document.getElementById('loginModal').classList.add('hidden');
-        document.body.style.overflow = ''; // Restore scrolling
-    }
 
     // Close modal when clicking outside
     document.getElementById('loginModal').addEventListener('click', function(e) {
@@ -125,18 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Add this to your existing script section
-    /* function openEventModal(event) {
-        document.getElementById('eventDetailModal').classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    } */
-
-    function closeEventModal() {
-        // get element by class
-        document.getElementById('eventDetailModal').classList.add('hidden');
-        document.body.style.overflow = '';
-    }
-
     // Close modal when clicking outside
     document.getElementById('eventDetailModal').addEventListener('click', function(e) {
         if (e.target === this) {
@@ -156,30 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const closeMobileMenuButton = document.getElementById('close-mobile-menu');
 
-    function openMobileMenu() {
-        mobileMenu.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-        // Animate sidebar in
-        setTimeout(() => {
-            sidebar.classList.remove('-translate-x-full');
-        }, 50);
-    }
-
-    function closeMobileMenu() {
-        // Animate sidebar out
-        sidebar.classList.add('-translate-x-full');
-        setTimeout(() => {
-            mobileMenu.classList.add('hidden');
-            document.body.style.overflow = '';
-        }, 300);
-    }
-
-    function closeMenuAndOpenLogin() {
-        closeMobileMenu();
-        setTimeout(() => {
-            openLoginModal();
-        }, 300);
-    }
 
     mobileMenuButton.addEventListener('click', openMobileMenu);
     closeMobileMenuButton.addEventListener('click', closeMobileMenu);
@@ -198,17 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Signup Modal Functions
-    function openSignupModal() {
-        document.getElementById('signupModal').classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-    }
-
-    function closeSignupModal() {
-        document.getElementById('signupModal').classList.add('hidden');
-        document.body.style.overflow = ''; // Restore scrolling
-    }
-
     // Close modal when clicking outside
     document.getElementById('signupModal').addEventListener('click', function(e) {
         if (e.target === this) {
@@ -216,12 +133,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    function closeMenuAndOpenSignup() {
-        closeMobileMenu();
-        setTimeout(() => {
-            openSignupModal();
-        }, 300);
-    }
 
     // Update the toggle password functionality to work for both modals
     const togglePasswords = document.querySelectorAll('button[type="button"]');
@@ -248,3 +159,100 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function updateSlides() {
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+        slide.style.opacity = '0';
+    });
+    indicators.forEach(indicator => {
+        indicator.classList.remove('bg-primary-700');
+        indicator.classList.add('bg-gray-300');
+    });
+
+    slides[currentSlide].classList.add('active');
+    slides[currentSlide].style.opacity = '1';
+    indicators[currentSlide].classList.remove('bg-gray-300');
+    indicators[currentSlide].classList.add('bg-primary-700');
+}
+
+function moveSlide(direction) {
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    updateSlides();
+}
+
+function setSlide(slideIndex) {
+    currentSlide = slideIndex;
+    updateSlides();
+}
+
+
+function closeMenuAndOpenSignup() {
+    closeMobileMenu();
+    setTimeout(() => {
+        openSignupModal();
+    }, 300);
+}
+
+
+// Signup Modal Functions
+function openSignupModal() {
+    document.getElementById('signupModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+}
+
+function closeSignupModal() {
+    document.getElementById('signupModal').classList.add('hidden');
+    document.body.style.overflow = ''; // Restore scrolling
+}
+
+
+function openMobileMenu() {
+    mobileMenu.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    // Animate sidebar in
+    setTimeout(() => {
+        sidebar.classList.remove('-translate-x-full');
+    }, 50);
+}
+
+function closeMobileMenu() {
+    // Animate sidebar out
+    sidebar.classList.add('-translate-x-full');
+    setTimeout(() => {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+    }, 300);
+}
+
+function closeMenuAndOpenLogin() {
+    closeMobileMenu();
+    setTimeout(() => {
+        openLoginModal();
+    }, 300);
+}
+
+
+// Add this to your existing script section
+/* function openEventModal(event) {
+    document.getElementById('eventDetailModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+} */
+
+function closeEventModal() {
+    // get element by class
+    document.getElementById('eventDetailModal').classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+
+// Login Modal Functions
+function openLoginModal() {
+    document.getElementById('loginModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+}
+
+function closeLoginModal() {
+    document.getElementById('loginModal').classList.add('hidden');
+    document.body.style.overflow = ''; // Restore scrolling
+}
