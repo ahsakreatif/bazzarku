@@ -21,7 +21,6 @@ class UserSeeder extends Seeder
             'email' => 'admin@bazzarku.com',
             'password' => bcrypt('password'),
             'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
         ]);
         $admin->assignRole('super-admin');
 

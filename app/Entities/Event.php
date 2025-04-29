@@ -29,6 +29,7 @@ class Event extends Model implements Transformable
         'start_date',
         'end_date',
         'price',
+        'location',
         'status',
         'is_promoted',
         'event_type_id',

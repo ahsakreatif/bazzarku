@@ -10,6 +10,8 @@ class VendorDetail extends Component
     public $isOpen = false;
     public $vendor;
 
+    protected $listeners = ['showVendor'];
+
     public function mount()
     {
         $this->isOpen = false;

@@ -16,6 +16,7 @@
     <livewire:vendor-widget />
 
     <!-- Add Your Events Section -->
+    @if (Auth::check() && Auth::user()->hasRole('vendor'))
     <section class="mb-12">
         <h2 class="text-2xl font-bold text-primary-700 mb-6">Add your Events</h2>
         <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
@@ -40,4 +41,5 @@
             </div>
         </div>
     </section>
+    @endif
 </main>

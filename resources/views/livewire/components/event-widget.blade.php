@@ -9,10 +9,9 @@
               <select
                   class="appearance-none bg-white border border-primary-700 text-primary-700 px-4 py-2 pr-8 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-primary-700 focus:border-transparent">
                   <option value="">Sort by Area</option>
-                  <option value="jakarta">Jakarta</option>
-                  <option value="tangerang">Tangerang</option>
-                  <option value="bekasi">Bekasi</option>
-                  <option value="depok">Depok</option>
+                  @foreach(\App\Area::cases() as $area)
+                      <option value="{{ $area->value }}">{{ $area->name }}</option>
+                  @endforeach
               </select>
               <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-primary-700">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -63,16 +63,16 @@
                             @endif
                             {{ Auth::user()->name }}
                         </button>
-                        <div class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-lg shadow-lg z-10">
+                        <div class="hidden group-hover:block absolute right-0 w-48 bg-white border border-gray-100 rounded-lg shadow-lg z-10">
                             <ul class="py-2 text-sm text-gray-700">
                                 @if(Auth::user()->hasRole('vendor'))
-                                    <li><a href="{{ route('admin') }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('Vendor Panel') }}</a></li>
+                                    <li><a href="{{ route('vendor.dashboard') }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('Vendor Panel') }}</a></li>
                                 @endif
                                 <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">{{ __('Profile') }}</a></li>
                                 @if(Auth::user()->hasRole('tenant'))
                                     <li><a href="{{ route('user.settings') }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('History') }}</a></li>
                                 @endif
-                                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">{{ __('Logout') }}</a></li>
+                                <li><a href="{{ route('auth.logout') }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('Logout') }}</a></li>
                             </ul>
                         </div>
                     </div>

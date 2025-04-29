@@ -19,6 +19,8 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use Outerweb\FilamentSettings\Filament\Plugins\FilamentSettingsPlugin;
+
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -74,6 +76,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentShieldPlugin::make(),
+                FilamentSettingsPlugin::make()
             ])
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->favicon(url('images/bazzarku.jpg'))

@@ -32,3 +32,9 @@ Route::get('/logout', function () {
 
 
 Route::get('/events/{slug}/request', [ EventController::class, 'request' ] )->name('events.request');
+
+// Vendor Panel Routes
+Route::middleware(['auth', 'role:vendor'])->prefix('vendor')->group(function () {
+    Route::get('/dashboard', Livewire\Vendor\Dashboard::class)->name('vendor.dashboard');
+    Route::get('/events', Livewire\Vendor\Events::class)->name('vendor.events');
+});

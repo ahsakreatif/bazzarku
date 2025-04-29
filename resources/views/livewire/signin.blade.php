@@ -12,7 +12,17 @@
           <div class="space-y-6">
               <h2 class="text-xl font-semibold text-center">Sign in with email</h2>
 
-              <form class="space-y-4">
+              @if ($errors->any())
+                <div class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded relative" role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+              @endif
+
+              <form wire:submit.prevent="login" class="space-y-4">
                   <!-- Email -->
                   <div class="relative">
                       <div class="absolute inset-y-0 left-3 flex items-center">
@@ -21,6 +31,7 @@
                           </svg>
                       </div>
                       <input type="email"
+                          wire:model="email"
                           class="w-full pl-12 pr-4 py-3 bg-gray-100 rounded-lg focus:outline-none"
                           placeholder="Email"
                       >
@@ -34,6 +45,7 @@
                           </svg>
                       </div>
                       <input type="password"
+                          wire:model="password"
                           class="w-full pl-12 pr-10 py-3 bg-gray-100 rounded-lg focus:outline-none"
                           placeholder="Password"
                       >

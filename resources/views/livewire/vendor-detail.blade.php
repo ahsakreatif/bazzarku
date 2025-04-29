@@ -14,8 +14,13 @@
                 <div class="flex flex-col md:flex-row">
                     <!-- Left side - Image -->
                     <div class="w-full md:w-1/2">
+                      @if ($vendor->picture)
                         <img src="{{ $vendor->picture }}" alt="{{ $vendor->vendor_name }}"
                             class="w-full h-[300px] md:h-full object-cover rounded-t-lg md:rounded-l-lg md:rounded-tr-none">
+                      @else
+                        <img src="{{ asset('images/bazzarku.jpg') }}" alt="{{ $vendor->vendor_name }}"
+                            class="w-full h-[300px] md:h-full object-cover rounded-t-lg md:rounded-l-lg md:rounded-tr-none">
+                      @endif
                     </div>
 
                     <!-- Right side - Content -->
