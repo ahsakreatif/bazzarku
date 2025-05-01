@@ -43,6 +43,7 @@ class UserSeeder extends Seeder
                         'vendor_name' => $faker->name,
                         'phone_number' => $faker->phoneNumber,
                         'description' => $faker->text,
+                        'location' => $faker->city,
                         'picture' => 'https://img.logoipsum.com/' . $logos[array_rand($logos)] . '.png',
                     ]);
                 }

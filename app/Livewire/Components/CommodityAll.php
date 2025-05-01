@@ -12,7 +12,7 @@ class CommodityAll extends Component
     public function mount()
     {
         $this->commodityTypes = CommodityType::with(['commodities' => function($query) {
-            $query->where('status', 'active')->limit(4)->orderBy('created_at', 'desc');
+            $query->where('status', 'available')->limit(4)->orderBy('created_at', 'desc');
         }])->get();
     }
 

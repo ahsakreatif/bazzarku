@@ -24,11 +24,11 @@ class Commodity extends Model implements Transformable
 
     public function type()
     {
-        return $this->belongsTo(CommodityType::class);
+        return $this->belongsTo(CommodityType::class, 'commodity_type_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

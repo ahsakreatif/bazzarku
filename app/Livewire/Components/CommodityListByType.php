@@ -12,7 +12,7 @@ class CommodityListByType extends Component
     public function mount($commodityTypeSlug)
     {
         $this->commodityType = CommodityType::with(['commodities' => function($query) {
-            $query->where('status', 'active');
+            $query->where('status', 'available');
         }])->where('slug', $commodityTypeSlug)->first();
     }
 

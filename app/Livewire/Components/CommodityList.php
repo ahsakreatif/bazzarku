@@ -11,7 +11,7 @@ class CommodityList extends Component
 
     public function mount()
     {
-        $this->commodities = CommodityEntity::where('status', 'active')->get();
+        $this->commodities = CommodityEntity::where('status', 'available')->get();
 
         foreach ($this->commodities as &$commodity) {
             if ($commodity->picture && !str_starts_with($commodity->picture, 'http')) {
