@@ -11,7 +11,7 @@ Route::get('/register/{type}', Livewire\Register::class)->name('auth.register');
 
 Route::get('/events', Livewire\Event::class)->name('events');
 Route::get('/events/tenant', Livewire\EventRequest::class)->name('event.request');
-Route::get('/events/{slug}', Livewire\EventDetail::class)->name('events.detail');
+Route::get('/events/{slug}', Livewire\Components\EventDetail::class)->name('events.detail');
 
 Route::get('/rentals/{slug}', Livewire\CommodityTypeList::class)->name('commodity-type.list');
 Route::get('/rentals', Livewire\CommodityList::class)->name('commodity.list');

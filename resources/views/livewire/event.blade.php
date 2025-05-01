@@ -1,5 +1,5 @@
 <section class="py-20 bg-gray-100">
-  <livewire:event-detail />
+  <livewire:components.event-detail />
   <div class="container mx-auto px-4">
     <div class="flex flex-wrap -mx-4 mb-20 items-center justify-between">
       <div class="w-full lg:w-auto px-4 mb-12 xl:mb-0">

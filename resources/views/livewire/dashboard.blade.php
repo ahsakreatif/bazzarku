@@ -1,19 +1,19 @@
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     @include('layouts.new.event-detail')
 
-    <livewire:event-detail />
+    <livewire:components.event-detail />
 
     <!-- Hero Carousel -->
-    <livewire:event-header />
+    <livewire:components.event-header />
 
     <!-- Add this after the carousel section and before the Upcoming Events section -->
-    <livewire:event-widget />
+    <livewire:components.event-list />
 
     <!-- Tool Rentals Section -->
-    <livewire:commodity-type-widget />
+    <livewire:components.commodity-list />
 
     <!-- Vendor Section -->
-    <livewire:vendor-widget />
+    <livewire:components.vendor-list />
 
     <!-- Add Your Events Section -->
     @if (Auth::check() && Auth::user()->hasRole('vendor'))

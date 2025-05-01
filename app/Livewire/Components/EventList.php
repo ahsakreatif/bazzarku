@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Components;
 
 use App\Entities\Event;
 use Livewire\Component;
 use Carbon\Carbon;
 
-class EventWidget extends Component
+class EventList extends Component
 {
     public $events;
 
@@ -37,6 +37,6 @@ class EventWidget extends Component
 
     public function render()
     {
-        return view('livewire.components.event-widget');
+        return view('livewire.components.event-list');
     }
 }

@@ -19,8 +19,8 @@
         @endif
     </div>
 
-    <livewire:signin />
-    <livewire:signup />
+    <livewire:components.signin />
+    <livewire:components.signup />
 
     {{-- @include("layouts.new.signin") --}}
     {{-- @include("layouts.new.signup") --}}

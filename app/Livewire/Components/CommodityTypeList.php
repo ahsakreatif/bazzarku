@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Components;
 
 use App\Entities\CommodityType;
 use Livewire\Component;
 
-class CommodityTypeWidget extends Component
+class CommodityTypeList extends Component
 {
     public $commodityTypes;
 
@@ -22,6 +22,6 @@ class CommodityTypeWidget extends Component
 
     public function render()
     {
-        return view('livewire.components.commodity-type-widget');
+        return view('livewire.components.commodity-type-list');
     }
 }

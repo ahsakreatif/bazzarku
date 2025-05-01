@@ -1,3 +1,3 @@
 <div class="container mx-auto px-4">
-  <livewire:commodity-type-list-widget :commodityTypeSlug="$commodityTypeSlug" />
+  <livewire:components.commodity-type-list :commodityTypeSlug="$commodityTypeSlug" />
 </div>

@@ -5,7 +5,7 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        @foreach ($vendor as $item)
+        @foreach ($vendors as $item)
         <!-- Event Card 1 -->
         <div wire:click="$dispatch('showVendor', { vendorId: {{ $item->id }} })"
              class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">

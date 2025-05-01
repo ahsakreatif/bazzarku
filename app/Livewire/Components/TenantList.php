@@ -5,7 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Entities\UserTenant;
 
-class TenantWidget extends Component
+class TenantList extends Component
 {
     public $tenant;
 
@@ -16,6 +16,6 @@ class TenantWidget extends Component
 
     public function render()
     {
-        return view('livewire.component.tenant-widget');
+        return view('livewire.components.tenant-list');
     }
 }

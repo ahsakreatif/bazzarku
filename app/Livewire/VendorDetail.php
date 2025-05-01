@@ -30,6 +30,6 @@ class VendorDetail extends Component
 
     public function render()
     {
-        return view('livewire.vendor-detail');
+        return view('livewire.components.vendor-detail');
     }
 }
