@@ -6,23 +6,29 @@ use Livewire\Component;
 use App\Repositories\EventRepository;
 use App\Repositories\EventTypeRepository;
 use Livewire\WithPagination;
+use App\Constants\Event as EventConstant;
 
 class Event extends Component
 {
     protected $eventRepo;
     protected $eventTypeRepo;
     public $filter = [];
-    public $sort = 'newest';
-    public $itemsToShow = 10;
+    public $sort;
     public $start_date;
     public $end_date;
+    public $events;
+    public $event_types;
 
     protected $listeners = ['searchUpdated'];
 
     public function mount()
     {
         $this->filter = [
-            'status' => 'active'
+            'status' => 'active',
+            'limit' => EventConstant::LIMIT,
+            'offset' => 0,
+            'order_at' => 'created_at',
+            'order_by' => 'desc'
         ];
     }
 
@@ -34,23 +40,25 @@ class Event extends Component
     public function setFilter($key, $value)
     {
         $this->filter[$key] = $value;
+        $this->events = null;
+        $this->filter['offset'] = 0;
     }
 
     public function setSort()
     {
         if ($this->sort === 'newest') {
-            $this->filter['sort'] = 'newest';
-            // dd('Newest bekerja');
+            $this->filter['order_at'] = 'created_at';
+            $this->filter['order_by'] = 'desc';
         } elseif ($this->sort === 'price') {
-            $this->filter['sort'] = 'price';
-            // dd('Price bekerja');
+            $this->filter['order_at'] = 'price';
+            $this->filter['order_by'] = 'asc';
         }
+        $this->events = null;
     }
 
     public function showMore()
     {
-        $this->itemsToShow += 10;
-        // dd('Show More bekerja, jumlah item sekarang: ' . $this->itemsToShow);
+        $this->filter['offset'] += EventConstant::LIMIT;
     }
 
     public function render(EventRepository $eventRepository, EventTypeRepository $eventTypeRepository)
@@ -65,10 +73,16 @@ class Event extends Component
             $this->filter['end_date'] = $this->end_date;
         }
 
-        $event_types = $this->eventTypeRepo->all();
-        // $events = $this->eventRepo->getFilter($this->filter);
-        $events = $this->eventRepo->getFilter($this->filter, $this->itemsToShow);
+        if (!$this->event_types) {
+            $this->event_types = $this->eventTypeRepo->all();
+        }
+        if (!$this->events) {
+            $this->events = $this->eventRepo->getFilter($this->filter);
+        } else {
+            $events = $this->eventRepo->getFilter($this->filter);
+            $this->events = $this->events->merge($events);
+        }
 
-        return view('livewire.event', compact('events', 'event_types'));
+        return view('livewire.event', [ 'events' => $this->events, $this->event_types ]);
     }
 }
