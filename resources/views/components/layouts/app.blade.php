@@ -8,14 +8,23 @@
     {{-- <link rel="stylesheet" href="/css/styles.css"> --}}
 </head>
 <body class="antialiased bg-body text-body font-body">
-    <div class="">
+
+  <div class="">
         @if (!Route::is('auth.*'))
-            @include("layouts.navbar")
+            @include("layouts.new.navbar")
         @endif
         {{ $slot }}
         @if (!Route::is('auth.*'))
-            @include("layouts.footer")
+            @include("layouts.new.footer")
         @endif
     </div>
+
+    <livewire:components.signin />
+    <livewire:components.signup />
+
+    {{-- @include("layouts.new.signin") --}}
+    {{-- @include("layouts.new.signup") --}}
+
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 </body>
 </html>

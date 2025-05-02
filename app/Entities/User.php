@@ -6,17 +6,14 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use SolutionForest\FilamentAccessManagement\Concerns\FilamentUserHelpers;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Panel;
 use Filament\Models\Contracts\FilamentUser;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Spatie\Permission\Models\Role;
 
 class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, FilamentUserHelpers, HasRoles;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.

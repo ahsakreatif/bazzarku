@@ -16,10 +16,11 @@ return new class extends Migration
 		Schema::create('user_vendors', function(Blueprint $table) {
             $table->id();
             $table->string('vendor_name');
-            $table->string('phone_number');
-            $table->text('description')->nullable();
-            $table->string('picture')->nullable();
-            $table->float('avg_rating')->default(0);
+            $table->string('phone_number')->nullable()->default(null);
+            $table->text('description')->nullable()->default(null);
+            $table->string('picture')->nullable()->default(null);
+            $table->float('avg_rating')->nullable()->default(null);
+            $table->string('location')->nullable()->default(null);
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');

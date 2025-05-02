@@ -18,11 +18,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
+            $table->string('location')->nullable();
             $table->string('picture')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->float('price')->default(0);
             $table->string('status')->default('draft');
+            $table->boolean('is_promoted')->default(false);
             $table->unsignedBigInteger('event_type_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

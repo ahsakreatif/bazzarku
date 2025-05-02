@@ -1,19 +1,19 @@
 <?php
 
-namespace SolutionForest\FilamentAccessManagement\Resources\UserResource\Pages;
+namespace App\Filament\Resources\UserResource\Pages;
 
-use Filament\Actions\CreateAction;
+use App\Filament\Resources\UserResource;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use SolutionForest\FilamentAccessManagement\Resources\UserResource;
 
 class ListUsers extends ListRecords
 {
     protected static string $resource = UserResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            Actions\CreateAction::make(),
         ];
     }
 }
