@@ -1,42 +1,6 @@
 <section class="mb-12">
   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
-      <h2 class="text-2xl font-bold text-primary-700">Nearest Event</h2>
-
-      <!-- Filter Controls -->
-      <div class="flex flex-col sm:flex-row gap-4 mt-4 sm:mt-0">
-          <!-- Sort by Area -->
-          <div class="relative">
-              <select
-                  class="appearance-none bg-white border border-primary-700 text-primary-700 px-4 py-2 pr-8 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-primary-700 focus:border-transparent">
-                  <option value="">Sort by Area</option>
-                  @foreach(\App\Area::cases() as $area)
-                      <option value="{{ $area->value }}">{{ $area->name }}</option>
-                  @endforeach
-              </select>
-              <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-primary-700">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-              </div>
-          </div>
-
-          <!-- Sort by Category -->
-          <div class="relative">
-              <select
-                  class="appearance-none bg-white border border-primary-700 text-primary-700 px-4 py-2 pr-8 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-primary-700 focus:border-transparent">
-                  <option value="">Sort by Category</option>
-                  <option value="concert">Concert</option>
-                  <option value="exhibition">Exhibition</option>
-                  <option value="conference">Conference</option>
-                  <option value="workshop">Workshop</option>
-              </select>
-              <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-primary-700">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-              </div>
-          </div>
-      </div>
+      <h2 class="text-2xl font-bold text-primary-700">Upcoming Event</h2>
   </div>
 
   <!-- Event Cards Grid -->

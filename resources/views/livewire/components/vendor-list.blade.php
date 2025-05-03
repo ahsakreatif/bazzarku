@@ -7,8 +7,8 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         @foreach ($vendors as $item)
         <!-- Event Card 1 -->
-        <div wire:click="$dispatch('showVendor', { vendorId: {{ $item->id }} })"
-             class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+        <a href="{{ route('vendor.detail', $item->id) }}"
+           class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
             @if ($item->picture)
                 <img src="{{ $item->picture }}" alt="{{ $item->vendor_name }}"
                     class="w-full h-48 object-cover">
@@ -26,10 +26,7 @@
                     <span>{{ $item->vendor_name }}</span>
                 </div>
             </div>
-        </div>
+        </a>
         @endforeach
     </div>
-
-    <!-- Include the VendorDetail component -->
-    <livewire:vendor-detail />
 </section>

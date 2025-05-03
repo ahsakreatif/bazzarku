@@ -64,14 +64,14 @@ document.addEventListener('DOMContentLoaded', function() {
     autoSlideInterval = setInterval(() => moveSlide(1), 5000);
 
     // Pause auto-advance on hover
-    const carousel = document.querySelector('.relative.mb-12');
+    /* const carousel = document.querySelector('.relative.mb-12');
     carousel.addEventListener('mouseenter', () => {
         clearInterval(autoSlideInterval);
     });
     carousel.addEventListener('mouseleave', () => {
         clearInterval(autoSlideInterval);
         autoSlideInterval = setInterval(() => moveSlide(1), 5000);
-    });
+    }); */
 
     // Initialize
     updateSlides();
@@ -106,11 +106,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Close modal when clicking outside
-    document.getElementById('eventDetailModal').addEventListener('click', function(e) {
+   /*  document.getElementById('eventDetailModal').addEventListener('click', function(e) {
         if (e.target === this) {
             closeEventModal();
         }
-    });
+    }); */
 
     // Mobile Menu Functions
     mobileMenuButton.addEventListener('click', openMobileMenu);

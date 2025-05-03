@@ -5,7 +5,9 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Repositories\EventRepository;
 use App\Repositories\EventTypeRepository;
-use Livewire\WithPagination;
+use App\Entities\EventType;
+use App\Area;
+use Illuminate\Support\Facades\Log;
 
 class Event extends Component
 {
@@ -16,6 +18,9 @@ class Event extends Component
     public $itemsToShow = 10;
     public $start_date;
     public $end_date;
+    public $event_types;
+    public $selected_area = '';
+    public $selected_category = '';
 
     protected $listeners = ['searchUpdated'];
 
@@ -24,6 +29,7 @@ class Event extends Component
         $this->filter = [
             'status' => 'active'
         ];
+        $this->event_types = EventType::all();
     }
 
     public function searchUpdated($searchQuery)
@@ -36,21 +42,40 @@ class Event extends Component
         $this->filter[$key] = $value;
     }
 
+    public function updatedSelectedArea($value)
+    {
+        Log::info('Area filter updated', ['value' => $value]);
+        if ($value) {
+            $this->filter['area'] = $value;
+        } else {
+            unset($this->filter['area']);
+        }
+        Log::info('Current filter state', ['filter' => $this->filter]);
+    }
+
+    public function updatedSelectedCategory($value)
+    {
+        Log::info('Category filter updated', ['value' => $value]);
+        if ($value) {
+            $this->filter['category'] = $value;
+        } else {
+            unset($this->filter['category']);
+        }
+        Log::info('Current filter state', ['filter' => $this->filter]);
+    }
+
     public function setSort()
     {
         if ($this->sort === 'newest') {
             $this->filter['sort'] = 'newest';
-            // dd('Newest bekerja');
         } elseif ($this->sort === 'price') {
             $this->filter['sort'] = 'price';
-            // dd('Price bekerja');
         }
     }
 
     public function showMore()
     {
         $this->itemsToShow += 10;
-        // dd('Show More bekerja, jumlah item sekarang: ' . $this->itemsToShow);
     }
 
     public function render(EventRepository $eventRepository, EventTypeRepository $eventTypeRepository)
@@ -65,8 +90,9 @@ class Event extends Component
             $this->filter['end_date'] = $this->end_date;
         }
 
+        Log::info('Rendering with filters', ['filter' => $this->filter, 'itemsToShow' => $this->itemsToShow]);
+
         $event_types = $this->eventTypeRepo->all();
-        // $events = $this->eventRepo->getFilter($this->filter);
         $events = $this->eventRepo->getFilter($this->filter, $this->itemsToShow);
 
         return view('livewire.event', compact('events', 'event_types'));
