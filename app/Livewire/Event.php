@@ -8,26 +8,33 @@ use App\Repositories\EventTypeRepository;
 use App\Entities\EventType;
 use App\Area;
 use Illuminate\Support\Facades\Log;
+use Livewire\WithPagination;
+use App\Constants\Event as EventConstant;
 
 class Event extends Component
 {
     protected $eventRepo;
     protected $eventTypeRepo;
     public $filter = [];
-    public $sort = 'newest';
-    public $itemsToShow = 10;
+    public $sort;
     public $start_date;
     public $end_date;
     public $event_types;
     public $selected_area = '';
     public $selected_category = '';
+    public $events;
+    public $itemsToShow = 10;
 
     protected $listeners = ['searchUpdated'];
 
     public function mount()
     {
         $this->filter = [
-            'status' => 'active'
+            'status' => 'active',
+            'limit' => EventConstant::LIMIT,
+            'offset' => 0,
+            'order_at' => 'created_at',
+            'order_by' => 'desc'
         ];
         $this->event_types = EventType::all();
     }
@@ -40,6 +47,8 @@ class Event extends Component
     public function setFilter($key, $value)
     {
         $this->filter[$key] = $value;
+        $this->events = null;
+        $this->filter['offset'] = 0;
     }
 
     public function updatedSelectedArea($value)
@@ -71,6 +80,7 @@ class Event extends Component
         } elseif ($this->sort === 'price') {
             $this->filter['sort'] = 'price';
         }
+        $this->events = null;
     }
 
     public function showMore()
@@ -95,6 +105,6 @@ class Event extends Component
         $event_types = $this->eventTypeRepo->all();
         $events = $this->eventRepo->getFilter($this->filter, $this->itemsToShow);
 
-        return view('livewire.event', compact('events', 'event_types'));
+        return view('livewire.event', [ 'events' => $this->events, $this->event_types ]);
     }
 }
