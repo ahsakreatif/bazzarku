@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\RentalTypeResource\Pages;
-use App\Filament\Resources\RentalTypeResource\RelationManagers;
+use App\Filament\Resources\CommodityTypeResource\Pages;
+use App\Filament\Resources\CommodityTypeResource\RelationManagers;
 use App\Entities\CommodityType;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -13,13 +13,13 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class RentalTypeResource extends Resource
+class CommodityTypeResource extends Resource
 {
     protected static ?string $model = CommodityType::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $label = 'Rental Types';
+    protected static ?string $label = 'Commodity Types';
 
     public static function form(Form $form): Form
     {
@@ -68,9 +68,9 @@ class RentalTypeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRentalTypes::route('/'),
-            'create' => Pages\CreateRentalType::route('/create'),
-            'edit' => Pages\EditRentalType::route('/{record}/edit'),
+            'index' => Pages\ListCommodityTypes::route('/'),
+            'create' => Pages\CreateCommodityType::route('/create'),
+            'edit' => Pages\EditCommodityType::route('/{record}/edit'),
         ];
     }
 }

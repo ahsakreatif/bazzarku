@@ -10,6 +10,8 @@ use Faker\Factory as Faker;
 use App\Constants\StatusEvent;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Area;
+
 class EventSeeder extends Seeder
 {
     /**
@@ -38,6 +40,8 @@ class EventSeeder extends Seeder
                 ]);
             }
 
+            $areas = Area::cases();
+
             for ($i = 0; $i < 20; $i++) {
                 // get random User Vendor
                 $user = User::role('vendor')->inRandomOrder()->first();
@@ -51,7 +55,7 @@ class EventSeeder extends Seeder
                     'end_date' => now()->addDays(30),
                     'event_type_id' => $faker->numberBetween(1, 5),
                     'user_id' => $user->id,
-                    'location' => $faker->city(),
+                    'location' => $areas[$faker->numberBetween(0, count($areas) - 1)]->value,
                     'status' => StatusEvent::ACTIVE,
                     'price' => $faker->randomFloat(0, 100000, 1000000),
                     'is_promoted' => $faker->boolean,

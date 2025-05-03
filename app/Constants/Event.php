@@ -4,5 +4,5 @@ namespace App\Constants;
 
 class Event
 {
-    const LIMIT = 10;
+    const LIMIT = 9;
 }

@@ -1,5 +1,5 @@
 <section class="my-12">
-  <livewire:commodity-detail />
+  <livewire:components.commodity-detail />
 
   <div class="mb-6">
       <h2 class="text-2xl font-bold text-primary-700 mb-4">{{ $commodityType->name }}</h2>

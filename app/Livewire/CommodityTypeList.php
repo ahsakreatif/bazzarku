@@ -16,6 +16,6 @@ class CommodityTypeList extends Component
 
     public function render()
     {
-        return view('livewire.components.commodity-type-list');
+        return view('livewire.commodity-type-list');
     }
 }

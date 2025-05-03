@@ -8,7 +8,8 @@
             <!-- Filter by Area -->
             <div class="relative">
                 <select
-                    wire:model="selected_area"
+                    wire:model.live="selected_area"
+                    wire:loading.attr="disabled"
                     class="appearance-none bg-white border border-primary-700 text-primary-700 px-4 py-2 pr-8 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-primary-700 focus:border-transparent">
                     <option value="">Filter by Area</option>
                     @foreach(\App\Area::cases() as $area)
@@ -25,7 +26,8 @@
             <!-- Filter by Category -->
             <div class="relative">
                 <select
-                    wire:model="selected_category"
+                    wire:model.live="selected_category"
+                    wire:loading.attr="disabled"
                     class="appearance-none bg-white border border-primary-700 text-primary-700 px-4 py-2 pr-8 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-primary-700 focus:border-transparent">
                     <option value="">Filter by Category</option>
                     @foreach($event_types as $event_type)
@@ -41,8 +43,8 @@
         </div>
       </div>
       <div class="w-full lg:w-full px-3">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          @foreach ($events as $event)
+        <div wire:loading.remove class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          @forelse ($events as $event)
           <div wire:click="dispatch('showEvent', { eventId: {{ $event->id }} })"
             class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
               <img src="{{ $event->picture }}" alt="{{ $event->name }}"
@@ -59,12 +61,31 @@
                   </div>
               </div>
           </div>
-          @endforeach
+          @empty
+          <div class="col-span-full text-center py-8">
+              <p class="text-gray-500">No events found matching your criteria.</p>
+          </div>
+          @endforelse
+        </div>
+
+        <!-- Loading State -->
+        <div wire:loading class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            @for($i = 0; $i < 6; $i++)
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm animate-pulse">
+                <div class="w-full h-48 bg-gray-200"></div>
+                <div class="p-4">
+                    <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                </div>
+            </div>
+            @endfor
         </div>
       </div>
     </div>
-    <div class="text-center">
-      <a class="inline-block bg-orange-300 hover:bg-orange-400 text-white font-bold font-heading py-6 px-8 rounded-md uppercase" href="#" wire:click.prevent="showMore">Show More</a>
+
+    <!-- Pagination -->
+    <div class="text-center mt-8">
+        {{ $events->links() }}
     </div>
   </div>
 </section>

@@ -11,7 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('applications', function (Blueprint $table) {
+        // create table rentals which rental submissions from commodities
+        Schema::create('rentals', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable()->default(null);
             $table->string('email')->nullable()->default(null);
@@ -19,11 +20,12 @@ return new class extends Migration
             $table->string('address')->nullable()->default(null);
             $table->string('note')->nullable()->default(null);
 
-            $table->foreignId('event_id')->constrained('events');
-            $table->string('payment_proof')->nullable();
+            $table->foreignId('commodity_id')->constrained('commodities');
+            $table->string('payment_proof')->nullable()->default(null);
+            $table->datetime('payment_datetime')->nullable()->default(null);
+            $table->date('start_date')->nullable()->default(null);
+            $table->date('end_date')->nullable()->default(null);
             $table->string('status')->default('pending');
-            $table->dateTime('payment_datetime')->nullable();
-
             $table->timestamps();
         });
     }
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('applications');
+        Schema::dropIfExists('rentals');
     }
 };

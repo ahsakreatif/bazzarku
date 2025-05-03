@@ -13,6 +13,8 @@ use App\Constants\Event as EventConstant;
 
 class Event extends Component
 {
+    use WithPagination;
+
     protected $eventRepo;
     protected $eventTypeRepo;
     public $filter = [];
@@ -22,8 +24,7 @@ class Event extends Component
     public $event_types;
     public $selected_area = '';
     public $selected_category = '';
-    public $events;
-    public $itemsToShow = 10;
+    public $itemsToShow = 9;
 
     protected $listeners = ['searchUpdated'];
 
@@ -42,13 +43,13 @@ class Event extends Component
     public function searchUpdated($searchQuery)
     {
         $this->filter['keyword'] = $searchQuery;
+        $this->resetPage();
     }
 
     public function setFilter($key, $value)
     {
         $this->filter[$key] = $value;
-        $this->events = null;
-        $this->filter['offset'] = 0;
+        $this->resetPage();
     }
 
     public function updatedSelectedArea($value)
@@ -59,6 +60,7 @@ class Event extends Component
         } else {
             unset($this->filter['area']);
         }
+        $this->resetPage();
         Log::info('Current filter state', ['filter' => $this->filter]);
     }
 
@@ -70,6 +72,7 @@ class Event extends Component
         } else {
             unset($this->filter['category']);
         }
+        $this->resetPage();
         Log::info('Current filter state', ['filter' => $this->filter]);
     }
 
@@ -80,7 +83,7 @@ class Event extends Component
         } elseif ($this->sort === 'price') {
             $this->filter['sort'] = 'price';
         }
-        $this->events = null;
+        $this->resetPage();
     }
 
     public function showMore()
@@ -105,6 +108,9 @@ class Event extends Component
         $event_types = $this->eventTypeRepo->all();
         $events = $this->eventRepo->getFilter($this->filter, $this->itemsToShow);
 
-        return view('livewire.event', [ 'events' => $this->events, $this->event_types ]);
+        return view('livewire.event', [
+            'events' => $events,
+            'event_types' => $event_types
+        ]);
     }
 }

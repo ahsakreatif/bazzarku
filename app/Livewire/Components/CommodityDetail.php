@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Components;
 
 use Livewire\Component;
 use App\Entities\Commodity;
@@ -30,6 +30,6 @@ class CommodityDetail extends Component
 
     public function render()
     {
-        return view('livewire.commodity-detail');
+        return view('livewire.components.commodity-detail');
     }
 }
