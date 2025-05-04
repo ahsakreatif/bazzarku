@@ -79,7 +79,13 @@ class RentalForm extends Component
             "End Date: {$this->end_date}");
 
         // Redirect to WhatsApp with the message
-        return redirect()->away("https://wa.me/" . preg_replace('/[^0-9]/', '', $this->commodity->contact_phone) . "?text=" . $message);
+        $whatsappUrl = "https://wa.me/" . preg_replace('/[^0-9]/', '', setting('social.whatsapp')) . "?text=" . $message;
+
+        // Open WhatsApp in new tab
+        $this->dispatch('openNewTab', url: $whatsappUrl);
+
+        // Refresh current page
+        return redirect(request()->header('Referer'));
     }
 
     public function render()

@@ -43,6 +43,13 @@ class Settings extends BaseSettings
                             TextInput::make('general.website')->url(),
                             TextInput::make('general.map')->url(),
                         ]), */
+                    Tabs\Tab::make('Social')
+                    ->schema([
+                        TextInput::make('social.whatsapp')->prefix('https://wa.me/'),
+                        TextInput::make('social.tiktok')->prefix('https://tiktok.com/'),
+                        TextInput::make('social.youtube')->prefix('https://youtube.com/'),
+                        TextInput::make('social.instagram')->prefix('https://instagram.com/'),
+                    ]),
                     Tabs\Tab::make('Seo')
                         ->schema([
                             TextInput::make('seo.title')
@@ -52,13 +59,6 @@ class Settings extends BaseSettings
                             TagsInput::make('seo.keywords'),
                             // TextInput::make('seo.google_analytics'),
                             // TextInput::make('seo.google_site_verification'),
-                        ]),
-                    Tabs\Tab::make('Social')
-                        ->schema([
-                            TextInput::make('social.whatsapp'),
-                            TextInput::make('social.instagram'),
-                            TextInput::make('social.facebook'),
-                            TextInput::make('social.twitter'),
                         ]),
                 ]),
             ];

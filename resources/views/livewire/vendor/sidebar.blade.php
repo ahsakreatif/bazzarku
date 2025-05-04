@@ -1,5 +1,5 @@
 <aside class="w-64 bg-white border-r border-gray-200">
-    <div class="h-full flex flex-col">
+    <div class="h-screen flex flex-col">
         <!-- Logo -->
         <div class="w-full p-4 border-b">
             <a href="{{ route('vendor.dashboard') }}" class="w-full flex items-center">
