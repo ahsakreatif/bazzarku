@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Pages;
+namespace App\Filament\Pages\Settings;
 
 use Closure;
 use Faker\Provider\ar_EG\Text;
@@ -25,7 +25,7 @@ class Settings extends BaseSettings
         return [
             Tabs::make('Settings')
                 ->schema([
-                    Tabs\Tab::make('General')
+                    /* Tabs\Tab::make('General')
                         ->schema([
                             TextInput::make('general.brand_name')
                                 ->required(),
@@ -36,15 +36,20 @@ class Settings extends BaseSettings
                                 ->required(),
                             TextInput::make('general.address_name_1'),
                             TinyEditor::make('general.address_desc_1'),
-                            TextInput::make('general.address_name_2'),
-                            TinyEditor::make('general.address_desc_2'),
                             TextInput::make('general.city'),
                             TextInput::make('general.state'),
                             FileUpload::make('general.logo')
                                 ->image(),
                             TextInput::make('general.website')->url(),
                             TextInput::make('general.map')->url(),
-                        ]),
+                        ]), */
+                    Tabs\Tab::make('Social')
+                    ->schema([
+                        TextInput::make('social.whatsapp')->prefix('https://wa.me/'),
+                        TextInput::make('social.tiktok')->prefix('https://tiktok.com/'),
+                        TextInput::make('social.youtube')->prefix('https://youtube.com/'),
+                        TextInput::make('social.instagram')->prefix('https://instagram.com/'),
+                    ]),
                     Tabs\Tab::make('Seo')
                         ->schema([
                             TextInput::make('seo.title')
@@ -52,15 +57,8 @@ class Settings extends BaseSettings
                             TextInput::make('seo.description')
                                 ->required(),
                             TagsInput::make('seo.keywords'),
-                            TextInput::make('seo.google_analytics'),
-                            TextInput::make('seo.google_site_verification'),
-                        ]),
-                    Tabs\Tab::make('Social')
-                        ->schema([
-                            TextInput::make('social.whatsapp'),
-                            TextInput::make('social.instagram'),
-                            TextInput::make('social.facebook'),
-                            TextInput::make('social.twitter'),
+                            // TextInput::make('seo.google_analytics'),
+                            // TextInput::make('seo.google_site_verification'),
                         ]),
                 ]),
             ];

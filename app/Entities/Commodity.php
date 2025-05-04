@@ -22,6 +22,16 @@ class Commodity extends Model implements Transformable
         'user_id',
     ];
 
+    public function getPictureAttribute($value)
+    {
+        // if already has http, return the value
+        if (strpos($value, 'http') !== false) {
+            return $value;
+        }
+
+        return asset('storage/' . $value);
+    }
+
     public function type()
     {
         return $this->belongsTo(CommodityType::class, 'commodity_type_id');

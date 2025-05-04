@@ -19,19 +19,19 @@
               @php
                   $socialLinks = [
                       'whatsapp' => [
-                          'url' => config('social.whatsapp', '#'),
+                          'url' => 'https://wa.me/'. setting('social.whatsapp', '#'),
                           'icon' => url('/images/icons/whatsapp.png')
                       ],
                       'tiktok' => [
-                          'url' => config('social.tiktok', '#'),
+                          'url' => 'https://tiktok.com/'. setting('social.tiktok', '#'),
                           'icon' => url('/images/icons/tiktok.png')
                       ],
                       'youtube' => [
-                          'url' => config('social.youtube', '#'),
+                          'url' => 'https://youtube.com/'. setting('social.youtube', '#'),
                           'icon' => url('/images/icons/youtube.png')
                       ],
                       'instagram' => [
-                          'url' => config('social.instagram', '#'),
+                          'url' => 'https://instagram.com/'. setting('social.instagram', '#'),
                           'icon' => url('/images/icons/instagram.png')
                       ],
                   ];

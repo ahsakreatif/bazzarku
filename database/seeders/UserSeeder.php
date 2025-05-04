@@ -37,19 +37,17 @@ class UserSeeder extends Seeder
                 ]);
 
                 // if odd number, create vendor
-                if ($i % 2 !== 0) {
-                    $user->assignRole('vendor');
-                    $user->vendor()->create([
-                        'vendor_name' => $faker->name,
-                        'phone_number' => $faker->phoneNumber,
-                        'description' => $faker->text,
-                        'location' => $faker->city,
-                        'picture' => 'https://img.logoipsum.com/' . $logos[array_rand($logos)] . '.png',
-                    ]);
-                }
+                $user->assignRole('vendor');
+                $user->vendor()->create([
+                    'vendor_name' => $faker->name,
+                    'phone_number' => $faker->phoneNumber,
+                    'description' => $faker->text,
+                    'location' => $faker->city,
+                    'picture' => 'https://img.logoipsum.com/' . $logos[array_rand($logos)] . '.png',
+                ]);
 
                 // if even number, create tenant
-                if ($i % 2 === 0) {
+                /* if ($i % 2 === 0) {
                     $user->assignRole('tenant');
                     $user->tenant()->create([
                         'tenant_name' => $faker->name,
@@ -59,7 +57,7 @@ class UserSeeder extends Seeder
                         'picture' => 'https://img.logoipsum.com/' . $logos[array_rand($logos)] . '.png',
                         'profile' => $faker->text
                     ]);
-                }
+                } */
 
                 $user->markEmailAsVerified();
 

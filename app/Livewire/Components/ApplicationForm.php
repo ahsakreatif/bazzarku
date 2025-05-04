@@ -46,6 +46,10 @@ class ApplicationForm extends Component
     {
         $this->validate();
 
+        // auto format phone number into 62 country code
+        // Remove leading zero, whitespace, and dashes, then prepend country code
+        $this->phone = '62' . ltrim(preg_replace('/[\s-]/', '', $this->phone), '0');
+
         $application = Application::create([
             'name' => $this->name,
             'email' => $this->email,
@@ -69,7 +73,13 @@ class ApplicationForm extends Component
             "Application ID: {$application->id}");
 
         // Redirect to WhatsApp with the message
-        return redirect()->away("https://wa.me/" . preg_replace('/[^0-9]/', '', $this->event->contact_phone) . "?text=" . $message);
+        $whatsappUrl = "https://wa.me/" . preg_replace('/[^0-9]/', '', setting('social.whatsapp')) . "?text=" . $message;
+
+        // Open WhatsApp in new tab
+        $this->dispatch('openNewTab', url: $whatsappUrl);
+
+        // Refresh current page
+        return redirect(request()->header('Referer'));
     }
 
     public function render()

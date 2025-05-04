@@ -1,11 +1,10 @@
 <section class="my-12">
-  <livewire:commodity-detail />
-
   <div class="mb-6">
       <h2 class="text-2xl font-bold text-primary-700 mb-4">{{ $commodityType->name }}</h2>
 
       <!-- Event Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        @if ($commodityType->commodities->count() > 0)
         @foreach ($commodityType->commodities as $commodity)
           <!-- Event Card 1 -->
         <div wire:click="dispatch('showCommodity', { commodityId: {{ $commodity->id }} })"
@@ -24,6 +23,9 @@
             </div>
         </div>
         @endforeach
+        @else
+          <p class="text-gray-500">No commodities found</p>
+        @endif
       </div>
   </div>
 </section>

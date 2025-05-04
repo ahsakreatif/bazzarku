@@ -19,7 +19,7 @@ class EventDetail extends Component
     #[On('showEvent')]
     public function showEvent($eventId)
     {
-        $this->event = Event::with('user')->find($eventId);
+        $this->event = Event::find($eventId);
         $this->isOpen = true;
     }
 
