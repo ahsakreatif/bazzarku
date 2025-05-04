@@ -4,51 +4,109 @@ namespace App\Livewire\Vendor;
 
 use App\Entities\Event;
 use Livewire\Component;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class Events extends Component
 {
     use WithPagination;
 
     public $search = '';
+    public $status = '';
+    public $date_filter = '';
+    public $perPage = 12;
+
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'status' => ['except' => ''],
+        'date_filter' => ['except' => ''],
+    ];
 
     protected $listeners = ['event-created' => '$refresh'];
 
-    public function updatingSearch()
+    public function updatedSearch($value)
+    {
+        Log::info('Search updated to: ' . $value);
+        $this->resetPage();
+    }
+
+    public function updatedStatus()
     {
         $this->resetPage();
     }
 
+    public function updatedDateFilter()
+    {
+        $this->resetPage();
+    }
+
+    public function clearFilters()
+    {
+        $this->search = '';
+        $this->status = '';
+        $this->date_filter = '';
+        $this->resetPage();
+    }
+
+    public function edit($id)
+    {
+        $this->dispatch('editEvent', id: $id)->to('vendor.create-event');
+    }
+
     public function render()
     {
-        $events = Event::where('user_id', Auth::user()->vendor->id)
-            ->where(function($query) {
-                $query->where('name', 'like', '%' . $this->search . '%')
-                    ->orWhere('description', 'like', '%' . $this->search . '%');
-            })
-            ->orderBy('start_date', 'desc')
-            ->paginate(10);
-
-        foreach ($events as &$event) {
-            if ($event->picture && !str_starts_with($event->picture, 'http')) {
-                $event->picture = url($event->picture);
-            }
-            $start_date = Carbon::parse($event->start_date);
-            $end_date = Carbon::parse($event->end_date);
-
-            if ($start_date->format('m') === $end_date->format('m')) {
-                $date = $start_date->format('d') . '-' . $end_date->format('d M y');
-            } else {
-                $date = $start_date->format('d M y') . ' - ' . $end_date->format('d M y');
+        try {
+            if (!Auth::check() || !Auth::user()->vendor) {
+                return view('livewire.vendor.events', [
+                    'events' => collect([])
+                ]);
             }
 
-            $event->date = $date;
+            $query = Event::query()
+                ->where('user_id', Auth::user()->vendor->id);
+
+            if ($this->search) {
+                Log::info('Applying search filter: ' . $this->search);
+                $query->where(function($q) {
+                    $q->where('name', 'like', '%' . $this->search . '%')
+                      ->orWhere('description', 'like', '%' . $this->search . '%');
+                });
+            }
+
+            if ($this->status) {
+                $query->where('status', $this->status);
+            }
+
+            if ($this->date_filter) {
+                $now = Carbon::now();
+                switch ($this->date_filter) {
+                    case 'upcoming':
+                        $query->where('start_date', '>', $now);
+                        break;
+                    case 'ongoing':
+                        $query->where('start_date', '<=', $now)
+                              ->where('end_date', '>=', $now);
+                        break;
+                    case 'past':
+                        $query->where('end_date', '<', $now);
+                        break;
+                }
+            }
+
+            $events = $query->orderBy('start_date', 'desc')
+                            ->paginate($this->perPage);
+
+            return view('livewire.vendor.events', [
+                'events' => $events
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Events component error: ' . $e->getMessage());
+            return view('livewire.vendor.events', [
+                'events' => collect([])
+            ]);
         }
-
-        return view('livewire.vendor.events', [
-            'events' => $events
-        ]);
     }
 }

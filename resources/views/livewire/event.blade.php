@@ -1,5 +1,4 @@
 <section class="py-20 bg-gray-100">
-  <livewire:components.event-detail />
   <div class="container mx-auto px-4">
     <livewire:components.event-header />
     <div class="flex flex-wrap -mx-3 mb-24">

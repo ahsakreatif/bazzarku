@@ -49,7 +49,6 @@
             No commodities found.
         </div>
       @endif
-      <livewire:components.commodity-detail />
   </div>
 
   @if(isset($commodities) && $commodities->hasPages())

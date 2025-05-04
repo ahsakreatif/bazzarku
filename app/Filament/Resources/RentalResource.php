@@ -18,7 +18,9 @@ class RentalResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
 
-    protected static ?string $label = 'Rentals';
+    protected static ?string $label = 'Rental Applications';
+
+    protected static ?string $navigationGroup = 'Rental Management';
 
     public static function form(Form $form): Form
     {

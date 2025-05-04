@@ -18,6 +18,8 @@ class ApplicationResource extends Resource
 
     protected static ?string $label = 'Event Applications';
 
+    protected static ?string $navigationGroup = 'Event Management';
+
     public static function form(Form $form): Form
     {
         return $form

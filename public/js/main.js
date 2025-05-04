@@ -173,10 +173,12 @@ function updateSlides() {
         indicator.classList.add('bg-gray-300');
     });
 
-    slides[currentSlide].classList.add('active');
-    slides[currentSlide].style.opacity = '1';
-    indicators[currentSlide].classList.remove('bg-gray-300');
-    indicators[currentSlide].classList.add('bg-primary-700');
+    if (slides[currentSlide]) {
+        slides[currentSlide].classList.add('active');
+        slides[currentSlide].style.opacity = '1';
+        indicators[currentSlide].classList.remove('bg-gray-300');
+        indicators[currentSlide].classList.add('bg-primary-700');
+    }
 }
 
 function moveSlide(direction) {

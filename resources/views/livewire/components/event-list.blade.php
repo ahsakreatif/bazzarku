@@ -35,5 +35,4 @@
         {{ $events->links() }}
     </div>
   @endif
-  <livewire:components.event-detail />
 </section>

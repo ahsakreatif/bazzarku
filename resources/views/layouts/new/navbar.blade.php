@@ -8,7 +8,7 @@
             <div class="flex-shrink-0">
                 <a href="/" class="flex items-center">
                     <img class="h-8 w-auto" src="{{ asset('images/bazzarku.jpg') }}" alt="{{ config('app.name') }} Logo">
-                    <span class="ml-2 text-xl font-bold">{{ config('app.name') }}</span>
+                    <span class="ml-2 text-xl font-bold hidden sm:inline">{{ config('app.name') }}</span>
                 </a>
             </div>
 
@@ -34,18 +34,7 @@
             </div>
 
             <!-- Search Bar -->
-            <div class="flex-1 max-w-xl mx-8">
-                <div class="relative">
-                    <input type="search"
-                        class="w-full bg-white text-gray-900 rounded-md pl-4 pr-10 py-2 focus:outline-none"
-                        placeholder="Search...">
-                    <button class="absolute right-3 top-2.5">
-                        <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
+            <livewire:components.search-bar />
 
             <!-- Auth Buttons -->
             <div>
@@ -77,8 +66,11 @@
                         </div>
                     </div>
                 @else
-                    <button onclick="openLoginModal()" class="bg-white text-primary-700 px-6 py-2 rounded-md font-medium">
-                        {{ __('Login') }}
+                    <button onclick="openLoginModal()" class="bg-white text-primary-700 px-2 py-2 rounded-md font-medium inline-flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                        </svg>
+                        <span class="hidden sm:inline">{{ __('Login') }}</span>
                     </button>
                 @endauth
             </div>
@@ -101,7 +93,7 @@
 
             <!-- Mobile Logo -->
             <div class="flex items-center">
-                <img class="h-8 w-auto" src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }} Logo">
+                <img class="h-8 w-auto" src="{{ asset('images/bazzarku.jpg') }}" alt="{{ config('app.name') }} Logo">
                 <span class="ml-2 text-xl font-bold text-white">{{ config('app.name') }}</span>
             </div>
         </div>

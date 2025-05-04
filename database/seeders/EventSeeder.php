@@ -51,6 +51,7 @@ class EventSeeder extends Seeder
                     'slug' => $faker->slug,
                     'description' => $faker->text,
                     'picture' => 'https://picsum.photos/id/' . $i+1 . '/640/480',
+                    'permit_document' => 'https://pdfobject.com/pdf/sample.pdf',
                     'start_date' => now(),
                     'end_date' => now()->addDays(30),
                     'event_type_id' => $faker->numberBetween(1, 5),

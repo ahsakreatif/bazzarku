@@ -34,63 +34,25 @@ class CommoditySeeder extends Seeder
                 ]);
             }
 
-            $commodities = [
-                [
-                    'name' => 'Stage and Visual',
-                    'slug' => 'stage-and-visual',
-                    'description' => 'Stage and Visual Description',
-                    'picture' => 'https://picsum.photos/id/21/640/480',
-                    'price' => $faker->randomFloat(0, 100000, 1000000),
-                    'status' => 'available',
-                    'location' => 'Tangerang',
-                    'commodity_type_id' => 1,
-                    'user_id' => 1,
-                ],
-                [
-                    'name' => 'Decor Furniture',
-                    'slug' => 'decor-furniture',
-                    'description' => 'Decor Furniture Description',
-                    'picture' => 'https://picsum.photos/id/22/640/480',
-                    'price' => $faker->randomFloat(0, 100000, 1000000),
-                    'status' => 'available',
-                    'location' => 'Jakarta',
-                    'commodity_type_id' => 2,
-                    'user_id' => 1,
-                ],
-                [
-                    'name' => 'Booth & Exhibition',
-                    'slug' => 'booth-and-exhibition',
-                    'description' => 'Booth & Exhibition Description',
-                    'picture' => 'https://picsum.photos/id/23/640/480',
-                    'price' => $faker->randomFloat(0, 100000, 1000000),
-                    'status' => 'available',
-                    'location' => 'Tangerang',
-                    'commodity_type_id' => 3,
-                    'user_id' => 1,
-                ],
-                [
-                    'name' => 'Transportation & Logistics',
-                    'slug' => 'transportation-and-logistics',
-                    'description' => 'Transportation & Logistics Description',
-                    'picture' => 'https://picsum.photos/id/24/640/480',
-                    'price' => $faker->randomFloat(0, 100000, 1000000),
-                    'status' => 'available',
-                    'location' => 'Jakarta',
-                    'commodity_type_id' => 4,
-                    'user_id' => 1,
-                ],
-                [
-                    'name' => 'Catering & Food',
-                    'slug' => 'catering-and-food',
-                    'description' => 'Catering & Food Description',
-                    'picture' => 'https://picsum.photos/id/25/640/480',
-                    'price' => $faker->randomFloat(0, 100000, 1000000),
-                    'status' => 'rented',
-                    'location' => 'Jakarta',
-                    'commodity_type_id' => 5,
-                    'user_id' => 1,
-                ]
-            ];
+            $commodities = [];
+            $locations = ['Jakarta', 'Tangerang', 'Bogor', 'Depok', 'Bekasi'];
+            $statuses = ['available' ];
+
+            // Generate 20 random commodities
+            for ($i = 0; $i < 20; $i++) {
+                $name = $faker->words(3, true);
+                $commodities[] = [
+                    'name' => ucwords($name),
+                    'slug' => str_replace(' ', '-', strtolower($name)),
+                    'description' => $faker->paragraph(),
+                    'picture' => 'https://picsum.photos/id/' . ($i + 21) . '/640/480',
+                    'price' => $faker->numberBetween(100000, 1000000),
+                    'status' => $faker->randomElement($statuses),
+                    'location' => $faker->randomElement($locations),
+                    'commodity_type_id' => $faker->numberBetween(1, 5),
+                    'user_id' => $faker->numberBetween(2, 10),
+                ];
+            }
 
             for ($i = 0; $i < count($commodities); $i++) {
                 $user = User::role('vendor')->inRandomOrder()->first();

@@ -26,6 +26,7 @@ class Event extends Model implements Transformable
         'slug',
         'description',
         'picture',
+        'permit_document',
         'start_date',
         'end_date',
         'price',

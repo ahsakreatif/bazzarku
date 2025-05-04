@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('location')->nullable();
             $table->string('picture')->nullable();
+            $table->string('permit_document')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->float('price')->default(0);

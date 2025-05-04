@@ -21,6 +21,8 @@ class CommodityTypeResource extends Resource
 
     protected static ?string $label = 'Commodity Types';
 
+    protected static ?string $navigationGroup = 'Rental Management';
+
     public static function form(Form $form): Form
     {
         return $form

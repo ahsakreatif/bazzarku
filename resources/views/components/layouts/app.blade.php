@@ -22,6 +22,9 @@
     <livewire:components.signin />
     <livewire:components.signup />
 
+    <livewire:components.event-detail />
+    <livewire:components.commodity-detail />
+
     {{-- @include("layouts.new.signin") --}}
     {{-- @include("layouts.new.signup") --}}
 

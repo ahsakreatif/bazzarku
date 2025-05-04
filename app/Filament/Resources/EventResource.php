@@ -30,6 +30,8 @@ class EventResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    protected static ?string $navigationGroup = 'Event Management';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -71,6 +73,10 @@ class EventResource extends Resource
                     ->columnSpan(2),
                 FileUpload::make('picture')
                     ->label('Picture')
+                    ->image()
+                    ->columnSpan(2),
+                FileUpload::make('permit_document')
+                    ->label('Permit Document')
                     ->image()
                     ->columnSpan(2),
             ]);
