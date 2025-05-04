@@ -65,7 +65,7 @@ class Events extends Component
             }
 
             $query = Event::query()
-                ->where('user_id', Auth::user()->vendor->id);
+                ->where('user_id', Auth::user()->id);
 
             if ($this->search) {
                 Log::info('Applying search filter: ' . $this->search);

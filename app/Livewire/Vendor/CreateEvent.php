@@ -22,6 +22,7 @@ class CreateEvent extends Component
     public $start_date = '';
     public $end_date = '';
     public $price = '';
+    public $location = '';
     public $event_type_id = '';
     public $status = 'active';
     public $oldPicture = null;
@@ -59,6 +60,7 @@ class CreateEvent extends Component
         $this->start_date = Carbon::parse($event->start_date)->format('Y-m-d\TH:i');
         $this->end_date = Carbon::parse($event->end_date)->format('Y-m-d\TH:i');
         $this->price = $event->price;
+        $this->location = $event->location;
         $this->event_type_id = $event->event_type_id;
         $this->status = $event->status;
         $this->isOpen = true;
@@ -93,9 +95,10 @@ class CreateEvent extends Component
             'start_date' => Carbon::parse($this->start_date)->format('Y-m-d H:i:s'),
             'end_date' => Carbon::parse($this->end_date)->format('Y-m-d H:i:s'),
             'price' => $this->price,
+            'location' => $this->location,
             'status' => $this->status,
             'event_type_id' => $this->event_type_id,
-            'user_id' => Auth::user()->vendor->id,
+            'user_id' => Auth::user()->id,
         ];
 
         if ($this->picture) {

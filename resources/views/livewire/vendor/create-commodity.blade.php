@@ -74,8 +74,9 @@
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Status</label>
                             <select wire:model.live="status" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
+                                <option value="available">Available</option>
+                                <option value="rented">Rented</option>
+                                <option value="maintenance">Maintenance</option>
                             </select>
                             @error('status') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>

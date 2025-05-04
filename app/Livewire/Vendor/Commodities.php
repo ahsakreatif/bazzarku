@@ -57,7 +57,7 @@ class Commodities extends Component
             }
 
             $query = Commodity::query()
-                ->where('user_id', Auth::user()->vendor->id);
+                ->where('user_id', Auth::user()->id);
 
             if ($this->search) {
                 Log::info('Applying commodity search filter: ' . $this->search);

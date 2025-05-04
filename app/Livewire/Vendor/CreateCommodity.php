@@ -86,7 +86,7 @@ class CreateCommodity extends Component
             'status' => $this->status,
             'location' => $this->location,
             'commodity_type_id' => $this->commodity_type_id,
-            'user_id' => Auth::user()->vendor->id,
+            'user_id' => Auth::user()->id,
         ];
 
         if ($this->picture) {

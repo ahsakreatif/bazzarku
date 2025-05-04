@@ -84,7 +84,7 @@ class Applications extends Component
                 ]);
             }
 
-            $vendorId = Auth::user()->vendor->id;
+            $vendorId = Auth::user()->id;
 
             // Get all events belonging to this vendor for the filter dropdown
             $events = Event::where('user_id', $vendorId)->get();

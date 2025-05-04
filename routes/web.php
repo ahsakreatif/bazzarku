@@ -35,10 +35,11 @@ Route::get('/events/{slug}/request', [ EventController::class, 'request' ] )->na
 
 // Vendor Panel Routes
 Route::middleware(['auth', 'role:vendor'])->prefix('vendor')->group(function () {
-    Route::get('/dashboard', Livewire\Vendor\Dashboard::class)->name('vendor.dashboard');
+    Route::get('/dashboard', 'App\Http\Controllers\Vendor\DashboardController@index')->name('vendor.dashboard');
     Route::get('/events', 'App\Http\Controllers\Vendor\EventsController@index')->name('vendor.events');
     Route::get('/commodities', 'App\Http\Controllers\Vendor\CommoditiesController@index')->name('vendor.commodities');
     Route::get('/applications', 'App\Http\Controllers\Vendor\ApplicationsController@index')->name('vendor.applications');
+    Route::get('/rentals', 'App\Http\Controllers\Vendor\RentalsController@index')->name('vendor.rentals');
 });
 
 Route::get('/vendors/{vendorId}', Livewire\VendorDetail::class)->name('vendor.detail');

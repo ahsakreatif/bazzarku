@@ -32,8 +32,9 @@
                     class="block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md"
                 >
                     <option value="">All Status</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
+                    <option value="available">Available</option>
+                    <option value="rented">Rented</option>
+                    <option value="maintenance">Maintenance</option>
                 </select>
             </div>
 
@@ -58,7 +59,7 @@
             @foreach($commodities as $commodity)
                 <div class="bg-white rounded-lg shadow overflow-hidden">
                     <div class="aspect-w-16 aspect-h-9">
-                        <img src="{{ $commodity->picture ? asset('storage/' . $commodity->picture) : asset('images/placeholder.jpg') }}" alt="{{ $commodity->name }}" class="w-full h-full object-cover">
+                        <img src="{{ $commodity->picture ? $commodity->picture : asset('images/placeholder.jpg') }}" alt="{{ $commodity->name }}" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4">
                         <h3 class="text-lg font-semibold text-gray-900">{{ $commodity->name }}</h3>
@@ -69,7 +70,7 @@
                             Location: {{ $commodity->location }}
                         </p>
                         <div class="mt-4 flex justify-between items-center">
-                            <span class="px-2 py-1 text-xs font-medium rounded-full {{ $commodity->status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' }}">
+                            <span class="px-2 py-1 text-xs font-medium rounded-full {{ $commodity->status === 'available' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' }}">
                                 {{ ucfirst($commodity->status) }}
                             </span>
                             <button
