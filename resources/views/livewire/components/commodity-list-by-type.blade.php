@@ -6,6 +6,7 @@
 
       <!-- Event Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        @if ($commodityType->commodities->count() > 0)
         @foreach ($commodityType->commodities as $commodity)
           <!-- Event Card 1 -->
         <div wire:click="dispatch('showCommodity', { commodityId: {{ $commodity->id }} })"
@@ -24,6 +25,9 @@
             </div>
         </div>
         @endforeach
+        @else
+          <p class="text-gray-500">No commodities found</p>
+        @endif
       </div>
   </div>
 </section>

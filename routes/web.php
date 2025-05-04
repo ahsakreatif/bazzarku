@@ -39,4 +39,4 @@ Route::middleware(['auth', 'role:vendor'])->prefix('vendor')->group(function () 
     Route::get('/events', Livewire\Vendor\Events::class)->name('vendor.events');
 });
 
-Route::get('/vendors/{vendorId}', Livewire\Components\VendorDetail::class)->name('vendor.detail');
+Route::get('/vendors/{vendorId}', Livewire\VendorDetail::class)->name('vendor.detail');

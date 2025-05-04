@@ -3,22 +3,40 @@
 namespace App\Livewire\Components;
 
 use App\Entities\Event;
+use App\Entities\UserVendor;
 use Livewire\Component;
 use Carbon\Carbon;
+use App\Constants\Event as EventConstant;
+use Livewire\WithPagination;
 
 class EventList extends Component
 {
-    public $events;
+    use WithPagination;
 
-    public function mount()
+    public $vendor;
+    public $user;
+
+    public function mount(UserVendor $vendor = null)
     {
-        $this->events = Event::where('status', 'active')
-            ->whereRaw('(date(start_date) <= DATE(CURRENT_DATE) AND date(end_date) >= DATE(CURRENT_DATE))')
-            ->orderBy('start_date', 'desc')
-            ->limit(3)
-        ->get();
+        if (!empty($vendor)) {
+            $this->vendor = $vendor;
+            $this->user = $vendor->user;
+        }
+    }
 
-        foreach ($this->events as &$event) {
+    public function render()
+    {
+        $events = Event::where('status', 'active')
+            ->whereRaw('(date(start_date) <= DATE(CURRENT_DATE) AND date(end_date) >= DATE(CURRENT_DATE))')
+            ->orderBy('start_date', 'desc');
+
+        if ($this->user) {
+            $events = $events->where('user_id', $this->user->id);
+        }
+
+        $events = $events->paginate(EventConstant::LIMIT);
+
+        foreach ($events as &$event) {
             if ($event->picture && !str_starts_with($event->picture, 'http')) {
                 $event->picture = url($event->picture);
             }
@@ -33,10 +51,9 @@ class EventList extends Component
 
             $event->date = $date;
         }
-    }
 
-    public function render()
-    {
-        return view('livewire.components.event-list');
+        return view('livewire.components.event-list', [
+            'events' => $events
+        ]);
     }
 }

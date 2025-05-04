@@ -81,55 +81,14 @@
 
             <!-- Content -->
             <div class="p-6">
-                @if($activeTab === 'events')
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @forelse($events as $event)
-                            <div class="bg-white rounded-lg shadow overflow-hidden">
-                                <img src="{{ $event->picture }}" alt="{{ $event->name }}" class="w-full h-48 object-cover">
-                                <div class="p-4">
-                                    <h3 class="text-lg font-semibold text-gray-900">{{ $event->name }}</h3>
-                                    <p class="mt-2 text-sm text-gray-500">{{ Str::limit($event->description, 100) }}</p>
-                                    <div class="mt-4 flex items-center justify-between">
-                                        <span class="text-primary-600 font-medium">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
-                                        <button wire:click="$dispatch('showEvent', { eventId: {{ $event->id }} })" class="text-primary-600 hover:text-primary-900">
-                                            View Details
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="col-span-full text-center text-gray-500">
-                                No events found.
-                            </div>
-                        @endforelse
-                    </div>
-                @else
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @forelse($commodities as $commodity)
-                            <div class="bg-white rounded-lg shadow overflow-hidden">
-                                <img src="{{ $commodity->picture }}" alt="{{ $commodity->name }}" class="w-full h-48 object-cover">
-                                <div class="p-4">
-                                    <h3 class="text-lg font-semibold text-gray-900">{{ $commodity->name }}</h3>
-                                    <p class="mt-2 text-sm text-gray-500">{{ Str::limit($commodity->description, 100) }}</p>
-                                    <div class="mt-4 flex items-center justify-between">
-                                        <span class="text-primary-600 font-medium">Rp {{ number_format($commodity->price, 0, ',', '.') }}</span>
-                                        <button wire:click="$dispatch('showCommodity', { commodityId: {{ $commodity->id }} })" class="text-primary-600 hover:text-primary-900">
-                                            View Details
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="col-span-full text-center text-gray-500">
-                                No commodities found.
-                            </div>
-                        @endforelse
-                    </div>
-                @endif
-
-                <div class="mt-6">
-                    {{ $activeTab === 'events' ? $events->links() : $commodities->links() }}
-                </div>
+              @if($activeTab === 'events')
+                  <livewire:components.event-list :vendor="$vendor" />
+              @else
+                  <livewire:components.commodity-list :vendor="$vendor" />
+              @endif
+              <div class="mt-6">
+                  {{ $activeTab === 'events' ? $events->links() : $commodities->links() }}
+              </div>
             </div>
         </div>
     @endif

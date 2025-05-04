@@ -1,20 +1,48 @@
-<div>
+<section class="container mx-auto">
+  @if ($vendor)
     <div class="bg-white rounded-lg shadow overflow-hidden">
         <!-- Vendor Header -->
-        <div class="p-6">
-            <div class="flex items-center space-x-4">
+        <div class="p-8">
+            <div class="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-8">
                 @if($vendor->picture)
-                    <img src="{{ $vendor->picture }}" alt="{{ $vendor->name }}" class="h-20 w-20 rounded-full">
+                    <img src="{{ $vendor->picture }}" alt="{{ $vendor->vendor_name }}" class="h-32 w-32 rounded-full shadow-lg border-4 border-white">
                 @else
-                    <div class="h-20 w-20 rounded-full bg-primary-100 flex items-center justify-center">
-                        <span class="text-primary-700 font-medium text-xl">
-                            {{ substr($vendor->name, 0, 2) }}
+                    <div class="h-32 w-32 rounded-full bg-primary-100 flex items-center justify-center shadow-lg border-4 border-white">
+                        <span class="text-primary-700 font-bold text-3xl">
+                            {{ substr($vendor->vendor_name, 0, 2) }}
                         </span>
                     </div>
                 @endif
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-900">{{ $vendor->name }}</h2>
-                    <p class="text-gray-500">{{ $vendor->description }}</p>
+                <div class="space-y-4">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900">{{ $vendor->vendor_name }}</h2>
+                        <p class="text-lg text-gray-600 mt-2">{{ $vendor->description }}</p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center text-gray-600">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span>{{ $vendor->email }}</span>
+                        </div>
+                        @if($vendor->phone_number)
+                        <div class="flex items-center text-gray-600">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                            <span>{{ $vendor->phone_number }}</span>
+                        </div>
+                        @endif
+                        @if($vendor->location)
+                        <div class="flex items-center text-gray-600">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            </svg>
+                            <span>{{ $vendor->location }}</span>
+                        </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,7 +68,7 @@
         </div>
 
         <!-- Search -->
-        <div class="p-4 border-b border-gray-200">
+        {{-- <div class="p-4 border-b border-gray-200">
             <div class="relative">
                 <input type="text" wire:model.live="search" placeholder="Search {{ $activeTab }}..." class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -49,59 +77,16 @@
                     </svg>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Content -->
         <div class="p-6">
-            @if($activeTab === 'events')
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @forelse($events as $event)
-                        <div class="bg-white rounded-lg shadow overflow-hidden">
-                            <img src="{{ $event->picture }}" alt="{{ $event->name }}" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="text-lg font-semibold text-gray-900">{{ $event->name }}</h3>
-                                <p class="mt-2 text-sm text-gray-500">{{ Str::limit($event->description, 100) }}</p>
-                                <div class="mt-4 flex items-center justify-between">
-                                    <span class="text-primary-600 font-medium">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
-                                    <button wire:click="$dispatch('showEvent', { eventId: {{ $event->id }} })" class="text-primary-600 hover:text-primary-900">
-                                        View Details
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <div class="col-span-full text-center text-gray-500">
-                            No events found.
-                        </div>
-                    @endforelse
-                </div>
-            @else
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @forelse($commodities as $commodity)
-                        <div class="bg-white rounded-lg shadow overflow-hidden">
-                            <img src="{{ $commodity->picture }}" alt="{{ $commodity->name }}" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="text-lg font-semibold text-gray-900">{{ $commodity->name }}</h3>
-                                <p class="mt-2 text-sm text-gray-500">{{ Str::limit($commodity->description, 100) }}</p>
-                                <div class="mt-4 flex items-center justify-between">
-                                    <span class="text-primary-600 font-medium">Rp {{ number_format($commodity->price, 0, ',', '.') }}</span>
-                                    <button wire:click="$dispatch('showCommodity', { commodityId: {{ $commodity->id }} })" class="text-primary-600 hover:text-primary-900">
-                                        View Details
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <div class="col-span-full text-center text-gray-500">
-                            No commodities found.
-                        </div>
-                    @endforelse
-                </div>
-            @endif
-
-            <div class="mt-6">
-                {{ $activeTab === 'events' ? $events->links() : $commodities->links() }}
-            </div>
+          @if($activeTab === 'events')
+              <livewire:components.event-list :vendor="$vendor" />
+          @else
+              <livewire:components.commodity-list :vendor="$vendor" />
+          @endif
         </div>
     </div>
-</div>
+  @endif
+</section>

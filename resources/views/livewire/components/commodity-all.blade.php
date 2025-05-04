@@ -1,5 +1,5 @@
 <section class="my-12">
-  <livewire:commodity-detail />
+  <livewire:components.commodity-detail />
 
   @foreach ($commodityTypes as $commodityType)
   <div class="mb-6">

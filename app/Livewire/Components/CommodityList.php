@@ -2,26 +2,55 @@
 
 namespace App\Livewire\Components;
 
-use App\Entities\Commodity as CommodityEntity;
+use App\Entities\Commodity;
 use Livewire\Component;
+use Carbon\Carbon;
+use Livewire\WithPagination;
+use App\Entities\UserVendor;
+use App\Constants\Event as EventConstant;
 
 class CommodityList extends Component
 {
-    public $commodities;
+    use WithPagination;
 
-    public function mount()
+    public $vendor;
+    public $user;
+    public $limit = EventConstant::LIMIT;
+    public $title = 'Available Rental Items';
+    public $gridCols = 'grid-cols-1 md:grid-cols-3';
+    public $showDescription = false;
+    public $showPrice = true;
+    public $showLocation = true;
+    public $showViewButton = false;
+
+    public function mount(UserVendor $vendor = null)
     {
-        $this->commodities = CommodityEntity::where('status', 'available')->get();
-
-        foreach ($this->commodities as &$commodity) {
-            if ($commodity->picture && !str_starts_with($commodity->picture, 'http')) {
-                $commodity->picture = url($commodity->picture);
-            }
+        if (!empty($vendor)) {
+            $this->vendor = $vendor;
+            $this->user = $vendor->user;
         }
     }
 
     public function render()
     {
-        return view('livewire.components.commodity-list');
+        $query = Commodity::where('status', 'available');
+
+        if ($this->user) {
+            $query->where('user_id', $this->user->id);
+        }
+
+        $commodities = $query
+            ->orderBy('created_at', 'desc')
+            ->paginate($this->limit);
+
+        foreach ($commodities as &$commodity) {
+            if ($commodity->picture && !str_starts_with($commodity->picture, 'http')) {
+                $commodity->picture = url($commodity->picture);
+            }
+        }
+
+        return view('livewire.components.commodity-list', [
+            'commodities' => $commodities
+        ]);
     }
 }
