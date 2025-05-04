@@ -38,6 +38,7 @@ Route::middleware(['auth', 'role:vendor'])->prefix('vendor')->group(function () 
     Route::get('/dashboard', Livewire\Vendor\Dashboard::class)->name('vendor.dashboard');
     Route::get('/events', 'App\Http\Controllers\Vendor\EventsController@index')->name('vendor.events');
     Route::get('/commodities', 'App\Http\Controllers\Vendor\CommoditiesController@index')->name('vendor.commodities');
+    Route::get('/applications', 'App\Http\Controllers\Vendor\ApplicationsController@index')->name('vendor.applications');
 });
 
 Route::get('/vendors/{vendorId}', Livewire\VendorDetail::class)->name('vendor.detail');

@@ -46,6 +46,10 @@ class ApplicationForm extends Component
     {
         $this->validate();
 
+        // auto format phone number into 62 country code
+        // Remove leading zero, whitespace, and dashes, then prepend country code
+        $this->phone = '62' . ltrim(preg_replace('/[\s-]/', '', $this->phone), '0');
+
         $application = Application::create([
             'name' => $this->name,
             'email' => $this->email,
