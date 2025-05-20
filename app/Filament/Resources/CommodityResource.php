@@ -43,7 +43,7 @@ class CommodityResource extends Resource
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()
-                    ->prefix('Rp'),
+                    ->prefix('IDR'),
                 Forms\Components\Select::make('status')
                     ->options([
                         'available' => 'Available',
