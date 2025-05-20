@@ -5,7 +5,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
             <!-- Logo -->
-            <div class="flex-shrink-0">
+            <div class="flex-shrink-0 mr-10">
                 <a href="/" class="flex items-center">
                     <img class="h-8 w-auto" src="{{ asset('images/bazzarku.jpg') }}" alt="{{ config('app.name') }} Logo">
                     <span class="ml-2 text-xl font-bold hidden sm:inline">{{ config('app.name') }}</span>
