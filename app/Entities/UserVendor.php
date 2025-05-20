@@ -35,4 +35,14 @@ class UserVendor extends Model implements Transformable
         return $this->belongsTo(User::class);
     }
 
+    public function getPictureAttribute($value)
+    {
+        // if already has http, return the value
+        if (strpos($value, 'http') !== false) {
+            return $value;
+        }
+
+        return asset('storage/' . $value);
+    }
+
 }

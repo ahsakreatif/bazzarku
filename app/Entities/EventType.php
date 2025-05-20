@@ -22,7 +22,23 @@ class EventType extends Model implements Transformable
      */
     protected $fillable = [
         'name',
-        'description'
+        'slug',
+        'description',
+        'picture',
     ];
 
+    public function getPictureAttribute($value)
+    {
+        // if already has http, return the value
+        if (strpos($value, 'http') !== false) {
+            return $value;
+        }
+
+        return asset('storage/' . $value);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

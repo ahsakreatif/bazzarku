@@ -68,6 +68,13 @@ class EventResource extends Resource
                     ->label('Status')
                     ->options(\App\Constants\StatusEvent::$status_labels)
                     ->default(\App\Constants\StatusEvent::DRAFT),
+                Select::make('is_promoted')
+                    ->label('Promoted')
+                    ->options([
+                        '0' => 'No',
+                        '1' => 'Yes',
+                    ])
+                    ->default(0),
                 TinyEditor::make('description')
                     ->label('Description')
                     ->columnSpan(2),

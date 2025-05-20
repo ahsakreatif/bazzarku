@@ -28,6 +28,12 @@ class EventTypeResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->label('Name')
                     ->required(),
+                Forms\Components\TextInput::make('slug')
+                    ->label('Slug')
+                    ->required(),
+                Forms\Components\FileUpload::make('picture')
+                    ->label('Picture')
+                    ->required(),
                 Forms\Components\Textarea::make('description')
                     ->label('Description')
                     ->rows(3),
@@ -41,6 +47,8 @@ class EventTypeResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\ImageColumn::make('picture')
+                    ->label('Picture'),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable()
                     ->sortable(),

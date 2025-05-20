@@ -16,6 +16,16 @@ class CommodityType extends Model implements Transformable
         'picture',
     ];
 
+    public function getPictureAttribute($value)
+    {
+        // if already has http, return the value
+        if (strpos($value, 'http') !== false) {
+            return $value;
+        }
+
+        return asset('storage/' . $value);
+    }
+
     public function commodities()
     {
         return $this->hasMany(Commodity::class);
